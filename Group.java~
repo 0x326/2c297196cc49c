@@ -4,6 +4,6 @@ public class Group {
     
     //Do stuff
     
-    System.out.println("area");
+    System.out.println(area);
   }
 }
