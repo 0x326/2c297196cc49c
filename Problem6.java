@@ -1,6 +1,12 @@
-public class SumSquareDifference {
+// Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu Zhang, Ranyang Hu
+// Instructor: Vijayalakshmi Ramasamy
+// CSE 174, Section A
+// Date: October 31, 2016
+// Filename: Problem6.java
+// Description: Solves problem at https://projecteuler.net/problem=6
+
+public class Problem6 {
   public static void main(String[] args) {
-    
     int sumOfSquares = 0;
     int squareOfSums = 0;
     int sum = 0;
