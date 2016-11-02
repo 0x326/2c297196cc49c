@@ -9,7 +9,7 @@ public class Problem17 {
   public static void main(String[] args) {
     // Declare Variables
     long numToCompute = 5125426158L;
-    int numOfDigits;
+    byte numOfDigits;
     
     // Find out how many digits the number has
     for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) > 10; numOfDigits++) {
@@ -17,12 +17,12 @@ public class Problem17 {
     }
     
     // Read the number left-to-right
-    int currentNumber;
-    int nextNumber;
+    byte currentNumber;
+    byte nextNumber;
     String numberName;
     String numberPlaceName;
     String numberInWords = "";
-    for (int currentDigit = 1; currentDigit <= numOfDigits; currentDigit++) {
+    for (byte currentDigit = 1; currentDigit <= numOfDigits; currentDigit++) {
       // Translate digit place to words, such as 'hundred' or 'thousand'
       //TODO: Make this work for higher places such as 'hundred thousand'
       switch (currentDigit) {
@@ -33,7 +33,7 @@ public class Problem17 {
           numberPlaceName = "";
       }
       // Get number
-      currentNumber = (int) (numToCompute / Math.pow(10, numOfDigits - currentDigit)) % 10;
+      currentNumber = (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit)) % 10);
       // Translate into numeric word
       switch (currentNumber) {
         case 1:
@@ -70,7 +70,7 @@ public class Problem17 {
       // Peek at the next number
       if (currentDigit % 3 == 1 && currentNumber == 1) {
         nextNumber = numOfDigits - currentDigit > 0 
-          ? (int) (numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10
+          ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
           : -1;
         switch (nextNumber) {
           case 1:
