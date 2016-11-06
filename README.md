@@ -10,9 +10,67 @@ CSE 174 Project Euler Group
  - Ranyang Hu
 
 ## Todo List
+### 1st Problem (Problem 1)
 
- - [ ] Design algorithms to solve 8 problems
- - [ ] Create code to solve the problems
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
  - [ ] Comment code so it is readable by others
- - [ ] Write alternative algorithms and prove the best one
+ - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
+
+### 2nd Problem (Problem 6)
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 3rd Problem (Problem 17)
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 4th Problem (Problem 551)
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 5th Problem
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 6th Problem
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 7th Problem
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
+### 8th Problem
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Write alternative algorithms and prove it is the best one
+ - [ ] Create JUnit Test Cases
+
