@@ -6,10 +6,9 @@
 // Description: Solves problem at https://projecteuler.net/problem=1
 
 public class Problem1 {
-  public static void main(String[] args) {
+  public static int solveProblem(int numLimit) {
     // Declare Variables
     int sumOfFactors = 0;
-    int numLimit = 1000;
     
     // Search through all numbers within range
     for(int currentNum = 0; currentNum < numLimit; currentNum++) {
@@ -18,6 +17,9 @@ public class Problem1 {
         sumOfFactors += currentNum;
       }
     }
-    System.out.println(sum);
+    return sumOfFactors;
+  }
+  public static void main(String[] args) {
+    System.out.println(solveProblem(1000));
   }
 }
