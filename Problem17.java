@@ -13,15 +13,14 @@ public class Problem17 {
     // Declare Variables
     long numToCompute = 5125426158L;
     byte numOfDigits;
-
+    
     //Logger.getGlobal().setLevel(Level.OFF); // TODO: Uncoment this line for final submission
     Logger.getGlobal().info("" + numToCompute);
-
+    
     // Find out how many digits the number has
-    for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) > 10; numOfDigits++) {
-      // Do nothing
-    }
-
+    for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) > 10; numOfDigits++);
+    // Loop does nothing; it only updates `numOfDigits`
+    
     // Read the number left-to-right
     String numberInWords = "";
     for (byte currentDigit = 1; currentDigit <= numOfDigits; currentDigit++) {
@@ -134,7 +133,6 @@ public class Problem17 {
             default:
               numberName = "";
           }
-          
       }
       if ((numOfDigits - currentDigit) % 3 == 0) {
         switch ((numOfDigits - currentDigit) / 3) {
@@ -149,13 +147,14 @@ public class Problem17 {
             break;
           }
       }
-      // Append to string
+      // Now that we have gathered the appriate words for the digit,
+      // append to string
       numberInWords += " " + numberName;
       if (!numberPlaceName.equals("")) {
         numberInWords += " " + numberPlaceName.trim();
       }
     }
-
+    
     // Display result
     System.out.println(numberInWords);
   }
