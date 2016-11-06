@@ -15,3 +15,4 @@ CSE 174 Project Euler Group
  - [ ] Create code to solve the problems
  - [ ] Comment code so it is readable by others
  - [ ] Write alternative algorithms and prove the best one
+ - [ ] Create JUnit Test Cases
