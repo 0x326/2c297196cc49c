@@ -7,37 +7,63 @@
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.Scanner;
 
 public class Problem17 {
   public static void main(String[] args) {
+    // Declare variables
+    long totalNumOfLetters = 0;
+    int[] numTestingRange = new int[2];
+    Scanner keyboard = new Scanner(System.in);
+    
+    // Get range from user
+    System.out.print("Enter the low range: ");
+    numTestingRange[0] = keyboard.nextInt();
+    System.out.print("Enter the high range: ");
+    numTestingRange[1] = keyboard.nextInt();
+    
+    for (int numToTest = numTestingRange[0]; numToTest <= numTestingRange[1]; numToTest++) {
+      totalNumOfLetters += toWords(numToTest).replaceAll(" ", "").length();
+    }
+    
+    System.out.printf("Letters it takes to print all the numbers from %d to %d: %d", 
+                      numTestingRange[0], numTestingRange[1], totalNumOfLetters);
+  }
+  public static String toWords(long numToCompute) {
     // Declare Variables
-    long numToCompute = 5125426158L;
     byte numOfDigits;
     
     //Logger.getGlobal().setLevel(Level.OFF); // TODO: Uncoment this line for final submission
-    Logger.getGlobal().info("" + numToCompute);
+    //Logger.getGlobal().info("" + numToCompute);
     
     // Find out how many digits the number has
-    for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) > 10; numOfDigits++);
+    for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) >= 10; numOfDigits++);
     // Loop does nothing; it only updates `numOfDigits`
     
     // Read the number left-to-right
     String numberInWords = "";
     for (byte currentDigit = 1; currentDigit <= numOfDigits; currentDigit++) {
       String numberName = "";
-      String numberPlaceName = "";
+      String numberNamePostfix = "";
+      String numberNamePrefix = "";
       // Get number
       byte currentNumber = (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit)) % 10);
       // Translate digit place to words, such as 'hundred' or 'thousand'
       //TODO: Make this work for higher places such as 'hundred thousand'
+      byte nextNumber = numOfDigits - currentDigit > 0
+        ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
+        : -1;
+      if (numOfDigits >= 3 && (numOfDigits - currentDigit) == 1 && (currentNumber != 0 || nextNumber != 0)) {
+        numberNamePrefix = "and";
+      }
       switch ((numOfDigits - currentDigit) % 3) {
         case 1:
           switch (currentNumber) {
             case 1:
-              byte nextNumber = numOfDigits - currentDigit > 0
-                  ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
-                  : -1;
               switch (nextNumber) {
+                case 0:
+                  numberName = "ten";
+                  break;
                 case 1:
                   numberName = "eleven";
                   break;
@@ -99,7 +125,7 @@ public class Problem17 {
           }
           break;
         case 2:
-          numberPlaceName = "hundred";
+          numberNamePostfix = "hundred";
           // Fall through
         default:
           switch (currentNumber) {
@@ -137,25 +163,34 @@ public class Problem17 {
       if ((numOfDigits - currentDigit) % 3 == 0) {
         switch ((numOfDigits - currentDigit) / 3) {
           case 1:
-            numberPlaceName += " thousand";
+            numberNamePostfix += " thousand";
             break;
           case 2:
-            numberPlaceName += " million";
+            numberNamePostfix += " million";
             break;
           case 3:
-            numberPlaceName += " billion";
+            numberNamePostfix += " billion";
             break;
           }
       }
+      
       // Now that we have gathered the appriate words for the digit,
       // append to string
-      numberInWords += " " + numberName;
-      if (!numberPlaceName.equals("")) {
-        numberInWords += " " + numberPlaceName.trim();
+      if (!numberNamePrefix.equals("")) {
+        numberInWords += " " + numberNamePrefix.trim();
+      }
+      if (!numberName.equals("")) {
+        numberInWords += " " + numberName;
+      }
+      if (!numberNamePostfix.equals("")) {
+        numberInWords += " " + numberNamePostfix.trim();
       }
     }
+    numberInWords = numberInWords.trim();
     
-    // Display result
-    System.out.println(numberInWords);
+    Logger.getGlobal().info(numberInWords);
+    
+    // Return result
+    return numberInWords;
   }
 }
