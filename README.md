@@ -42,15 +42,15 @@ CSE 174 Project Euler Group
  - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
 
-### 5th Problem
+### 5th Problem (Problem 47)
 
- - [ ] Design algorithm
- - [ ] Create code to solve the problem
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
  - [ ] Comment code so it is readable by others
  - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
 
-### 6th Problem
+### 6th Problem (Problem 124)
 
  - [ ] Design algorithm
  - [ ] Create code to solve the problem
