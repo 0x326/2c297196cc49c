@@ -74,10 +74,15 @@ CSE 174 Project Euler Group
  - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
 
-## Note regarding possibly bundling our byte code for a single submission
+## Code bundling for presentation
+Compile all .java files:
+```
+javac *.java
+```
+
 To bundle into one file:
 ```
-jar cfm bundle.jar Manifest.txt Main.class Problem1.class [...]
+jar cfm bundle.jar Manifest.txt *.class
 ```
 
 To execute bundle:
