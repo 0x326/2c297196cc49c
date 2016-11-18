@@ -6,7 +6,7 @@
 // Description: Solves problem at https://projecteuler.net/problem=1
 
 public class Problem1 {
-  public static int solveProblem(int numLimit) {
+  public static int sumOfNaturalNumbers(int numLimit) {
     // Declare Variables
     int sumOfFactors = 0;
     
@@ -20,6 +20,6 @@ public class Problem1 {
     return sumOfFactors;
   }
   public static void main(String[] args) {
-    System.out.println(solveProblem(1000));
+    System.out.println(sumOfNaturalNumbers(1000));
   }
 }
