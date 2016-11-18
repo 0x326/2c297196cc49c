@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Problem17 {
   public static void main(String[] args) {
     // Declare variables
-    long totalNumOfLetters = 0;
+    long totalNumOfLetters;
     int[] numTestingRange = new int[2];
     Scanner keyboard = new Scanner(System.in);
     
@@ -22,19 +22,24 @@ public class Problem17 {
     System.out.print("Enter the high range: ");
     numTestingRange[1] = keyboard.nextInt();
     
-    for (int numToTest = numTestingRange[0]; numToTest <= numTestingRange[1]; numToTest++) {
-      totalNumOfLetters += toWords(numToTest).replaceAll(" ", "").length();
-    }
+    totalNumOfLetters = countLettersOfInterval(numTestingRange[0], numTestingRange[1]);
     
     System.out.printf("Letters it takes to print all the numbers from %d to %d: %d", 
                       numTestingRange[0], numTestingRange[1], totalNumOfLetters);
+  }
+  public static long countLettersOfInterval(int startingNumber, int endingNumber) {
+    long totalNumOfLetters = 0;
+    for (int numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
+      totalNumOfLetters += toWords(numToTest).replaceAll(" ", "").length();
+    }
+    return totalNumOfLetters;
   }
   public static String toWords(long numToCompute) {
     // Declare Variables
     byte numOfDigits;
     
-    //Logger.getGlobal().setLevel(Level.OFF); // TODO: Uncoment this line for final submission
-    //Logger.getGlobal().info("" + numToCompute);
+    Logger.getGlobal().setLevel(Level.OFF); 
+    Logger.getGlobal().info("" + numToCompute);
     
     // Find out how many digits the number has
     for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) >= 10; numOfDigits++);
