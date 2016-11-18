@@ -36,8 +36,8 @@ CSE 174 Project Euler Group
 
 ### 4th Problem (Problem 551)
 
- - [ ] Design algorithm
- - [ ] Create code to solve the problem
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
  - [ ] Comment code so it is readable by others
  - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
@@ -46,7 +46,7 @@ CSE 174 Project Euler Group
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
+ - [x] Comment code so it is readable by others
  - [ ] Write alternative algorithms and prove it is the best one
  - [ ] Create JUnit Test Cases
 
