@@ -5,6 +5,7 @@
 // Filename: Problem124.java
 // Description: Solves problem at https://projecteuler.net/problem=124
 
+// Note: See Problem 47
 public class Problem124 {
   public static void main(String[] args) {
     ;

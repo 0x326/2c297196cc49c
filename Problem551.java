@@ -5,6 +5,7 @@
 // Filename: Problem551.java
 // Description: Solves problem at https://projecteuler.net/problem=551
 
+// Note: See Problem 16
 import java.math.BigInteger;
 public class Problem551 {
   public static void main(String[] args) {
