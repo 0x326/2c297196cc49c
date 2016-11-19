@@ -37,7 +37,7 @@ CSE 174 Project Euler Group
 ### 4th Problem (Problem 551)
 
  - [x] Design algorithm
- - [x] Create code to solve the problem
+ - [ ] Create code to solve the problem
  - [ ] Comment code so it is readable by others
  - [ ] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
@@ -47,7 +47,7 @@ CSE 174 Project Euler Group
  - [x] Design algorithm
  - [x] Create code to solve the problem
  - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
 
 ### 6th Problem (Problem 124)
@@ -76,7 +76,7 @@ CSE 174 Project Euler Group
 
 ### Presentation UI (`Main.java`)
 
- - [ ] Write code to call methods of the above problems to show  off what we have done
+ - [ ] Write code to call methods of the above problems to show off what we have done
 
 ### Final Testing
 
@@ -84,6 +84,7 @@ CSE 174 Project Euler Group
  - [ ] Test Presentation UI
 
 ## Code bundling for presentation
+
 Compile all .java files:
 ```
 javac *.java
