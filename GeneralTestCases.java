@@ -1,3 +1,10 @@
+// Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu Zhang, Ranyang Hu
+// Instructor: Vijayalakshmi Ramasamy
+// CSE 174, Section A
+// Date: November 19, 2016
+// Filename: GeneralTestCases.java
+// Description: Tests the our solutions for correct answers
+
 import junit.framework.TestCase;
 
 /**
@@ -5,7 +12,7 @@ import junit.framework.TestCase;
  * Every method starting with the word "test" will be called when running
  * the test with JUnit.
  */
-public class TestProblems extends TestCase {
+public class GeneralTestCases extends TestCase {
   
   /**
    * A test method.
@@ -17,7 +24,7 @@ public class TestProblems extends TestCase {
     ;
   }
   public void testProblem1() {
-    if (Problem1.solveProblem(10) != 23)
+    if (Problem1.sumOfNaturalNumbers(10) != 23)
       throw new Error();
     /* Replace values with another test case
     if (Problem1.solveProblem(10) != 23)
