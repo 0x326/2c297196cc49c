@@ -1,9 +1,11 @@
 // Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu Zhang, Ranyang Hu
+// Unique IDs (respectively): meyerjm, clemenbr, sheridnc, zhangt9, hur4
+// Percent Contribution (respectively): 
 // Instructor: Vijayalakshmi Ramasamy
 // CSE 174, Section A
-// Date: November 17, 2016
-// Filename: Main.java
-// Description: Serves as a UI for project presentation
+// Date: December 9, 2016
+// Filename: GroupProject.java
+// Description: Submission of group assignment to solve Project Euler chanllenges
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
