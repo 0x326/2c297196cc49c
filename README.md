@@ -119,19 +119,17 @@ CSE 174 Project Euler Group
  - [ ] Create test cases for the above problems
  - [ ] Test Presentation UI
 
-## Code bundling for presentation
+## Code bundling
+(If we ever wanted to make a JAR file)
 
-Compile all .java files:
-```
-javac *.java
-```
+Compile all `.java` files:
 
-To bundle into one file:
-```
-jar cfm bundle.jar Manifest.txt *.class
-```
+    javac *.java
 
-To execute bundle:
-```
-java -jar bundle.jar
-```
+Bundle `.class` files into JAR file:
+
+    jar cfm bundle.jar Manifest.txt *.class
+
+Execute bundle:
+
+    java -jar bundle.jar
