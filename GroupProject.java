@@ -16,20 +16,28 @@ import java.math.BigInteger;
  * This is the class we will use for our presentation of the project
  */
 public class GroupProject {
+  static Scanner keyboardReader = new Scanner(System.in);
+  
+  /**
+   * 
+   */
   public static void main(String[] args) {
     System.out.println("Hello there");
     //System.out.println(Problem1.sumOfNaturalNumbers(50));
   }
   
   //// PROBLEM 1 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=1
    */
   public static void solveProblem1() {
     System.out.println(sumOfNaturalNumbers(1000));
   }
+  
   /**
    * Finds the sum of natural numbers which are multiples of five or three on the interval [1, numLimit)
+   * @param numLimit The endpoint to the interval
    * @return The sum of the numbers
    */
   public static int sumOfNaturalNumbers(int numLimit) {
@@ -47,12 +55,14 @@ public class GroupProject {
   }
   
   //// PROBLEM 6 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=6
    */
   public static void solveProblem6() {
     System.out.println(differenceOperation(100));
   }
+  
   /**
    * Finds the difference between $\Sigma_{k=1}^{limit} (k^2)$ and $(\Sigma_{k=1}^{limit} (k))^2$
    * @return The numerical difference
@@ -73,14 +83,16 @@ public class GroupProject {
   }
   
   //// PROBLEM 16 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=16
    */
-  public static void solveProblem16(String[] args) {
+  public static void solveProblem16() {
     BigInteger num = new BigInteger("2");
     num = num.pow(1000);
     System.out.print(sumOfDigits(num));
   }
+  
   /**
    * Computes the sum of digits for a large number
    * @return The sum of the digits
@@ -98,26 +110,27 @@ public class GroupProject {
   }
   
   //// PROBLEM 17 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=17
    */
-  public static void solveProblem17(String[] args) {
+  public static void solveProblem17() {
     // Declare variables
     long totalNumOfLetters;
     int[] numTestingRange = new int[2];
-    Scanner keyboard = new Scanner(System.in);
     
     // Get range from user
     System.out.print("Enter the low range: ");
-    numTestingRange[0] = keyboard.nextInt();
+    numTestingRange[0] = keyboardReader.nextInt();
     System.out.print("Enter the high range: ");
-    numTestingRange[1] = keyboard.nextInt();
+    numTestingRange[1] = keyboardReader.nextInt();
     
     totalNumOfLetters = countLettersOfInterval(numTestingRange[0], numTestingRange[1]);
     
     System.out.printf("Letters it takes to print all the numbers from %d to %d: %d", 
                       numTestingRange[0], numTestingRange[1], totalNumOfLetters);
   }
+  
   /**
    * Converts every integer in the given interval into words 
    * and counts the total number of letters written for all words
@@ -130,6 +143,7 @@ public class GroupProject {
     }
     return totalNumOfLetters;
   }
+  
   /**
    * Converts a given number into words (American syntax)
    * @return The String representation of the number in words
@@ -300,10 +314,11 @@ public class GroupProject {
   }
   
   //// PROBLEM 26 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=26
    */
-  public static void solveProblem26(String[] args) {
+  public static void solveProblem26() {
     for (double d = 2; d < 10; d++) {
       int index = 0;
       double fraction = 1/d;
@@ -316,11 +331,12 @@ public class GroupProject {
   }
   
   //// PROBLEM 47 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=47.
    * This program computes the first N positive integers to have M distinct factors each
    */
-  public static void solveProblem47(String[] args) {
+  public static void solveProblem47() {
     Logger.getGlobal().setLevel(Level.OFF);
     // Declare variables
     int desiredNumberOfFactors = 3;
@@ -329,7 +345,7 @@ public class GroupProject {
     int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
     int tallyOfConsecutiveIntegers = 0;
     
-    // Begin testing the interval [1, ?) for integers until we find enough consecutive numbers
+    // Begin testing the interval [1, infinity) for integers until we find enough consecutive numbers
     for (int i = 1; tallyOfConsecutiveIntegers < desiredNumberOfConsecutiveNumbers; i++) {
       Logger.getGlobal().info("i: " + i);
       // Factor the integer
@@ -364,6 +380,7 @@ public class GroupProject {
       System.out.println();
     }
   }
+  
   /**
    * Computes the prime factors of the given argument
    * @param num The number to prime factorize
@@ -391,6 +408,7 @@ public class GroupProject {
     factors = java.util.Arrays.copyOf(factors, factorsFound);
     return factors;
   }
+  
   /**
    * Filters an array of factors into an array of distinct factors
    * @param factorList The int array of factors
@@ -421,20 +439,22 @@ public class GroupProject {
   }
   
   //// PROBLEM 124 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=124.
    * See Problem 47
    */
-  public static void solveProblem124(String[] args) {
+  public static void solveProblem124() {
     ;
   }
   
   //// PROBLEM 551 ////
+  
   /**
    * Solves problem at https://projecteuler.net/problem=551.
    * See Problem 16
    */
-  public static void solveProblem551(String[] args) {
+  public static void solveProblem551() {
     System.out.println(computeSeries("31054319", (long) Math.pow(10, 6), (long) Math.pow(10, 15))
                          .toString());
   }
@@ -448,4 +468,54 @@ public class GroupProject {
     return seriesTerm;
   }
   
+  //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
+  
+  /**
+   * 
+   */
+  public static void solveQuestion6() {
+    int numberChoice;
+    boolean prime = false;
+    Scanner keyboardReader = new Scanner(System.in);
+    System.out.println("Enter a number between 1 and 2,147,483,647");
+    numberChoice = keyboardReader.nextInt();
+    
+    for(int i = 2 ; i < numberChoice; i++) {
+      prime = true;
+      for(int j = 2; j < i; j++) {
+        if(i % j == 0){
+          prime = false;
+        }
+      }
+      if(prime== true)
+        System.out.print(i + " ");
+    }
+  }
+  
+  //// QUESTION 11 FROM MORE LOOPING PROBLEM SHEET ////
+  
+  /**
+   * 
+   */
+  public static void solveQuestion11() {
+    int numberOfTickets = 100;
+    int desiredQuantity = 0;
+    int buyers = 0;
+    while(numberOfTickets > 0) {
+      System.out.println("How many tickets would you like to purchase?");
+      desiredQuantity = keyboardReader.nextInt(); 
+      if(desiredQuantity > numberOfTickets) {
+        System.out.print("There are only " + numberOfTickets + " tickets remaining. ");
+      }
+      if(desiredQuantity > 4) {
+        System.out.print("You can only buy up to 4 tickets. ");
+      }
+      if(desiredQuantity < 5 && numberOfTickets >= desiredQuantity) {
+        numberOfTickets = numberOfTickets - desiredQuantity;
+        System.out.println("Remaining Tickets: " + numberOfTickets);
+        buyers++;
+      }
+    }
+    System.out.println("Total Number of Buyers: " + buyers);
+  }
 }

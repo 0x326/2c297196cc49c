@@ -10,69 +10,105 @@ CSE 174 Project Euler Group
  - Ranyang Hu
 
 ## Todo List
-### 1st Problem (Problem 1)
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
-
-### 2nd Problem (Problem 6)
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
-
-### 3rd Problem (Problem 17)
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
-
-### 4th Problem (Problem 551)
-
- - [x] Design algorithm
- - [ ] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
-
-### 5th Problem (Problem 47)
+### Problem 1
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
  - [x] Comment code so it is readable by others
  - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
 
-### 6th Problem (Problem 124)
+### Problem 6
 
- - [ ] Design algorithm
- - [ ] Create code to solve the problem
- - [ ] Comment code so it is readable by others
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
  - [ ] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
 
-### 7th Problem (Problem 16)
+### Problem 16
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
  - [ ] Comment code so it is readable by others
  - [ ] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
 
-### 8th Problem (Problem 26)
+### Problem 17
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
+ - [ ] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [x] Make code calculate based on user input
+ - [ ] Test code
+
+### Problem 26
 
  - [ ] Design algorithm
  - [ ] Create code to solve the problem
  - [ ] Comment code so it is readable by others
  - [ ] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
+
+### Problem 47
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
+ - [x] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
+
+### Problem 124
+
+ - [ ] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
+
+### Problem 551
+
+ - [x] Design algorithm
+ - [ ] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
+
+### Question 6 From "More Looping" Problem Sheet
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
+
+### Question 11 From "More Looping" Problem Sheet
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [ ] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [ ] Make code calculate based on user input
+ - [ ] Test code
 
 ### Presentation UI (`Main.java`)
 

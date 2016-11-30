@@ -24,10 +24,10 @@ public class GeneralTestCases extends TestCase {
     ;
   }
   public void testProblem1() {
-    if (Problem1.sumOfNaturalNumbers(10) != 23)
+    if (GroupProject.sumOfNaturalNumbers(10) != 23)
       throw new Error();
     /* Replace values with another test case
-    if (Problem1.solveProblem(10) != 23)
+    if (GroupProject.sumOfNaturalNumbers(10) != 23)
       throw new Error();
     */
   }
