@@ -14,15 +14,23 @@ import java.math.BigInteger;
 
 /**
  * This is the class we will use for our presentation of the project
- * It will call the methods of the individual problem files such as `Problem47.main()`
  */
 public class GroupProject {
   public static void main(String[] args) {
     System.out.println("Hello there");
     //System.out.println(Problem1.sumOfNaturalNumbers(50));
   }
+  
+  //// PROBLEM 1 ////
   /**
    * Solves problem at https://projecteuler.net/problem=1
+   */
+  public static void solveProblem1() {
+    System.out.println(sumOfNaturalNumbers(1000));
+  }
+  /**
+   * Finds the sum of natural numbers which are multiples of five or three on the interval [1, numLimit)
+   * @return The sum of the numbers
    */
   public static int sumOfNaturalNumbers(int numLimit) {
     // Declare Variables
@@ -37,8 +45,17 @@ public class GroupProject {
     }
     return sumOfFactors;
   }
+  
+  //// PROBLEM 6 ////
   /**
    * Solves problem at https://projecteuler.net/problem=6
+   */
+  public static void solveProblem6() {
+    System.out.println(differenceOperation(100));
+  }
+  /**
+   * Finds the difference between $\Sigma_{k=1}^{limit} (k^2)$ and $(\Sigma_{k=1}^{limit} (k))^2$
+   * @return The numerical difference
    */
   public static int differenceOperation(int limit) {
     int sumOfSquares = 0;
@@ -54,6 +71,8 @@ public class GroupProject {
     
     return squareOfSums - sumOfSquares; 
   }
+  
+  //// PROBLEM 16 ////
   /**
    * Solves problem at https://projecteuler.net/problem=16
    */
@@ -62,6 +81,10 @@ public class GroupProject {
     num = num.pow(1000);
     System.out.print(sumOfDigits(num));
   }
+  /**
+   * Computes the sum of digits for a large number
+   * @return The sum of the digits
+   */
   public static int sumOfDigits(BigInteger num) {
     int sum = 0;
     int numberOfDigits;
@@ -73,6 +96,8 @@ public class GroupProject {
     }
     return sum;
   }
+  
+  //// PROBLEM 17 ////
   /**
    * Solves problem at https://projecteuler.net/problem=17
    */
@@ -93,6 +118,11 @@ public class GroupProject {
     System.out.printf("Letters it takes to print all the numbers from %d to %d: %d", 
                       numTestingRange[0], numTestingRange[1], totalNumOfLetters);
   }
+  /**
+   * Converts every integer in the given interval into words 
+   * and counts the total number of letters written for all words
+   * @return The number of letters written across all numbers
+   */
   public static long countLettersOfInterval(int startingNumber, int endingNumber) {
     long totalNumOfLetters = 0;
     for (int numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
@@ -100,6 +130,10 @@ public class GroupProject {
     }
     return totalNumOfLetters;
   }
+  /**
+   * Converts a given number into words (American syntax)
+   * @return The String representation of the number in words
+   */
   public static String toWords(long numToCompute) {
     // Declare Variables
     byte numOfDigits;
@@ -264,6 +298,8 @@ public class GroupProject {
     // Return result
     return numberInWords;
   }
+  
+  //// PROBLEM 26 ////
   /**
    * Solves problem at https://projecteuler.net/problem=26
    */
@@ -278,11 +314,13 @@ public class GroupProject {
       index ++;
     }
   }
+  
+  //// PROBLEM 47 ////
   /**
    * Solves problem at https://projecteuler.net/problem=47.
    * This program computes the first N positive integers to have M distinct factors each
    */
-  public static void main(String[] args) {
+  public static void solveProblem47(String[] args) {
     Logger.getGlobal().setLevel(Level.OFF);
     // Declare variables
     int desiredNumberOfFactors = 3;
@@ -381,13 +419,17 @@ public class GroupProject {
     }
     return distinctFactors;
   }
+  
+  //// PROBLEM 124 ////
   /**
    * Solves problem at https://projecteuler.net/problem=124.
    * See Problem 47
    */
-  public static void solveProblem47(String[] args) {
+  public static void solveProblem124(String[] args) {
     ;
   }
+  
+  //// PROBLEM 551 ////
   /**
    * Solves problem at https://projecteuler.net/problem=551.
    * See Problem 16
@@ -399,10 +441,11 @@ public class GroupProject {
   public static BigInteger computeSeries(String initialTerm, long startingIndex, long endingIndex) {
     BigInteger seriesTerm = new BigInteger(initialTerm);
     for (long i = startingIndex; i <= endingIndex; i++) {
-      Integer digitSum = new Integer(Problem16.sumOfDigits(seriesTerm));
+      Integer digitSum = new Integer(sumOfDigits(seriesTerm));
       BigInteger digitSumAsBigInteger = new BigInteger(digitSum.toString());
       seriesTerm = seriesTerm.add(digitSumAsBigInteger);
     }
     return seriesTerm;
   }
+  
 }
