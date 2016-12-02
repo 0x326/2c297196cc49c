@@ -25,42 +25,12 @@ CSE 174 Project Euler Group
  - [x] Design algorithm
  - [x] Create code to solve the problem
  - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
  - [ ] Make code calculate based on user input
  - [ ] Test code
 
 ### Problem 16
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 17
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 26
-
- - [ ] Design algorithm
- - [ ] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 47
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
@@ -70,12 +40,22 @@ CSE 174 Project Euler Group
  - [ ] Make code calculate based on user input
  - [ ] Test code
 
-### Problem 124
+### Problem 17
 
- - [ ] Design algorithm
- - [ ] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
+ - [x] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [x] Make code calculate based on user input
+ - [ ] Test code
+
+### Problem 47
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [x] Comment code so it is readable by others
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
  - [ ] Make code calculate based on user input
  - [ ] Test code
@@ -94,30 +74,42 @@ CSE 174 Project Euler Group
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Comment code so it is readable by others
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Question 11 From "More Looping" Problem Sheet
 
  - [x] Design algorithm
  - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Comment code so it is readable by others
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
+ - [ ] Test code
+
+### Question 23 From "More Looping" Problem Sheet
+
+ - [x] Design algorithm
+ - [x] Create code to solve the problem
+ - [ ] Comment code so it is readable by others
+ - [x] Create javadoc documentation
+ - [ ] Write reasoning for our choice of algorithm
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Presentation UI (`Main.java`)
 
- - [ ] Write code to call methods of the above problems to show off what we have done
+ - [x] Write code to call methods of the above problems to show off what we have done
+ - [x] Loop
 
 ### Final Testing
 
  - [ ] Create test cases for the above problems
  - [ ] Test Presentation UI
+ - [ ] Add file handling
 
 ## Code bundling
 (If we ever wanted to make a JAR file)
