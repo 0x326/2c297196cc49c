@@ -22,44 +22,61 @@ public class GroupProject {
    * 
    */
   public static void main(String[] args) {
+    Logger.getGlobal().setLevel(Level.OFF);
+    // Display banner
+    System.out.println("//===================\\");
+    System.out.println("||                   ||");
+    System.out.println("||    CSE PROJECT    ||");
+    System.out.println("||  John, Bri, Noah  ||");
+    System.out.println("||  Tianyu, Ranyang  ||");
+    System.out.println("||                   ||");
+    System.out.println("\\===================//");
+    
     String problemChoice;
-    System.out.println("/////////////////");
-    System.out.println("///           ///");
-    System.out.println("///CSE PROJECT///");
-    System.out.println("///           ///");
-    System.out.println("/////////////////");
-    System.out.println();
-    System.out.println("What problem do you want solved?"); 
-    System.out.println("Options are: Problem 1, Problem 6, Problem 16, Problem 17, Problem 47, Problem 551, Question 6 on More Looping, Question 11 on More Looping, or Question 23 on More Looping.");
-    problemChoice = keyboardReader.next();
-    problemChoice = problemChoice.toLowerCase();
-    if(problemChoice.equals("problem1")) {
-      solveProblem1();
-    }
-    if(problemChoice.equals("problem6")) {
-      solveProblem6();
-    }
-    if(problemChoice.equals("problem16")) {
-      solveProblem16();
-    }
-    if(problemChoice.equals("problem17")) {
-      solveProblem17();
-    }
-    if(problemChoice.equals("problem47")) {
-      solveProblem47();
-    }
-    if(problemChoice.equals("problem551")) {
-      solveProblem551();
-    }
-    if(problemChoice.equals("question6")) {
-      solveQuestion6();
-    }
-    if(problemChoice.equals("question11")) {
-      solveQuestion11();
-    }
-    if(problemChoice.equals("question23")) {
-      solveQuestion23();
-    }
+    boolean shouldQuit = false;
+    do {
+      System.out.println();
+      System.out.println("==== MAIN MENU ====");
+      // Ask user for the problem
+      System.out.println("What problem do you want solved?");
+      System.out.println("Options are: Problem 1, Problem 6, Problem 16, Problem 17, Problem 47, Problem 551, Question 6 on More Looping, Question 11 on More Looping, or Question 23 on More Looping.");
+      System.out.println("Enter 'exit' to quit");
+      System.out.print("> ");
+      problemChoice = keyboardReader.nextLine().toLowerCase().replaceAll(" ","");
+      if (problemChoice.equals("exit")) {
+        shouldQuit = true;
+      }
+      else if(problemChoice.equals("problem1")) {
+        solveProblem1();
+      }
+      else if(problemChoice.equals("problem6")) {
+        solveProblem6();
+      }
+      else if(problemChoice.equals("problem16")) {
+        solveProblem16();
+      }
+      else if(problemChoice.equals("problem17")) {
+        solveProblem17();
+      }
+      else if(problemChoice.equals("problem47")) {
+        solveProblem47();
+      }
+      else if(problemChoice.equals("problem551")) {
+        solveProblem551();
+      }
+      else if(problemChoice.equals("question6")) {
+        solveQuestion6();
+      }
+      else if(problemChoice.equals("question11")) {
+        solveQuestion11();
+      }
+      else if(problemChoice.equals("question23")) {
+        solveQuestion23();
+      }
+      else {
+        System.out.println("Input not recognized");
+      }
+    } while (!shouldQuit);
   }
   
   //// PROBLEM 1 ////
@@ -100,24 +117,24 @@ public class GroupProject {
   }
   
   /**
-   * Finds the difference between $\Sigma_{k=1}^{limit} (k^2)$ and $(\Sigma_{k=1}^{limit} (k))^2$
+   * Finds the difference between $\Sigma_{k=1}^{N} (k^2)$ and $(\Sigma_{k=1}^{N} (k))^2$
+   * @param limit The value of N for the above summation
    * @return The numerical difference
    */
   public static int differenceOperation(int limit) {
-    // sum of the squares of first ten nature number.
+    // Compute $\Sigma_{k=1}^{N} (k^2)$
     int sumOfSquares = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfSquares += Math.pow(num, 2);
     }
     
-    // squares the sum of first ten nature number.
+    // Compute $(\Sigma_{k=1}^{N} (k))^2$
     int sumOfIntegers = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfIntegers += num;
     }
-    int squareOfSums = (int)(Math.pow(sumOfIntegers, 2));
+    int squareOfSums = (int) (Math.pow(sumOfIntegers, 2));
     
-    // retun the value.
     return squareOfSums - sumOfSquares; 
   }
   
@@ -125,15 +142,16 @@ public class GroupProject {
   
   /**
    * Solves problem at https://projecteuler.net/problem=16
-   * /
-   public static void solveProblem16() {
-   BigInteger num = new BigInteger("2");
-   num = num.pow(1000);
-   System.out.print(sumOfDigits(num));
-   }
-   
-   /**
+   */
+  public static void solveProblem16() {
+    BigInteger num = new BigInteger("2");
+    num = num.pow(1000);
+    System.out.print(sumOfDigits(num));
+  }
+  
+  /**
    * Computes the sum of digits for a large number
+   * @param A BigInteger representation of the number whose digits are to be counted
    * @return The sum of the digits
    */
   public static int sumOfDigits(BigInteger num) {
@@ -141,22 +159,24 @@ public class GroupProject {
     int numberOfDigits;
     BigInteger constant = new BigInteger("10");
     
-    // use for loop to get each of the degits of the number and sum all the degits.
+    // Find number of digits
     for(numberOfDigits=1; num.divide(constant.pow(numberOfDigits - 1)).compareTo(constant) >= 0; numberOfDigits++);
+    // Add digits
     for(int i = 0; i < numberOfDigits; i++) {
       sum = sum + (num.mod(constant)).intValue();
       num = num.divide(constant);
     }
     
-    // return the sum of the degits.
     return sum;
   }
   
   //// PROBLEM 17 ////
   
-  /** user input a number and translate the number into English and count how many letters would be used.
-    * Solves problem at https://projecteuler.net/problem=17
-    */
+  /**
+   * Determines the culumative number of letters needed to write every numeral 
+   * within a certain range provided by the user. 
+   * Solves problem at https://projecteuler.net/problem=17
+   */
   public static void solveProblem17() {
     // Declare variables
     long totalNumOfLetters;
@@ -175,27 +195,29 @@ public class GroupProject {
   }
   
   /**
-   * Converts every integer in the given interval into words 
-   * and counts the total number of letters written for all words
+   * Converts every integer in the given interval into numeral 
+   * and counts the total number of letters written across all numerals
+   * @param startingNumber The inclusive interval endpoint
+   * @param endingNumber The inclusive interval endpoint
    * @return The number of letters written across all numbers
    */
   public static long countLettersOfInterval(int startingNumber, int endingNumber) {
     long totalNumOfLetters = 0;
     for (int numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
-      totalNumOfLetters += toWords(numToTest).replaceAll(" ", "").length();
+      totalNumOfLetters += toNumeral(numToTest).replaceAll(" ", "").length();
     }
     return totalNumOfLetters;
   }
   
   /**
-   * Converts a given number into words (American syntax)
+   * Converts a given number into its numeral (American syntax)
+   * @param numToCompute The number to convert
    * @return The String representation of the number in words
    */
-  public static String toWords(long numToCompute) {
+  public static String toNumeral(long numToCompute) {
     // Declare Variables
     byte numOfDigits;
     
-    Logger.getGlobal().setLevel(Level.OFF); 
     Logger.getGlobal().info("" + numToCompute);
     
     // Find out how many digits the number has
@@ -472,8 +494,6 @@ public class GroupProject {
    * See Problem 16
    */
   public static void solveProblem551() {
-    
-    // if n^6=31054319 and calculate n^15.
     System.out.println(computeSeries("31054319", (long) Math.pow(10, 6), (long) Math.pow(10, 15))
                          .toString());
   }
@@ -493,72 +513,94 @@ public class GroupProject {
   
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
   
-  /** List all the prime number up to the number that user input.
-    * 
-    */
+  /**
+   * Prompts the user for an integer and 
+   * prints all postive prime numbers less than the given value
+   * Solves question 6 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
+   */
   public static void solveQuestion6() {
     int numberChoice;
     boolean prime = false;
     Scanner keyboardReader = new Scanner(System.in);
     
-    //get user input.
-    System.out.println("Enter a number between 1 and 2,147,483,647");
+    // Get upper limit
+    System.out.print("Enter a number between 1 and 2,147,483,647: ");
     numberChoice = keyboardReader.nextInt();
     
-    //use for loop to check the prime number 
+    // Check each number less than the limit
     for(int i = 2 ; i < numberChoice; i++) {
-      prime = true;
-      for(int j = 2; j < i; j++) {
-        if(i % j == 0){
-          prime = false;
-        }
-      }
-      if(prime== true)
-        // output the prime number.
+      if(isPrime(i)) {
+        // Output the number
         System.out.print(i + " ");
+      }
     }
+  }
+  
+  /**
+   * Determines whether a number is prime
+   * @param number The number to check
+   * @return {@code true} if it is prime; {@code false} otherwise
+   */
+  public static boolean isPrime(int number) {
+    boolean isNumPrime = true;
+    for(int i = 2; i < number; i++) {
+      if(number % i == 0){
+        isNumPrime = false;
+      }
+    }
+    return isNumPrime;
   }
   
   //// QUESTION 11 FROM MORE LOOPING PROBLEM SHEET ////
   
-  /** Total 100 tickets and each person can purchase maximum 4 tickets. return total number of buyers.
-    * 
-    */
+  /**
+   * Sells 100 tickets and prints the number of buyers
+   * Solves question 11 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
+   */
   public static void solveQuestion11() {
-    int numberOfTickets = 100;
+    int numOfBuyers = sellTickets(100);
+    System.out.println("Total Number of Buyers: " + numOfBuyers);
+  }
+  /** 
+   * Simulates a the selling of cinema tickets at ticket booth. Method will not quit until all tickets have been sold. Additionally, one person cannot buy more than four tickets. After all tickets have been sold
+   * @return The number of buyers
+   */
+  public static int sellTickets(int numberOfTickets) {
     int desiredQuantity = 0;
     int buyers = 0;
     while(numberOfTickets > 0) {
-      
-      //get number of user want to purchase.
+      // Get number of tickets wanted by customer
       System.out.println("How many tickets would you like to purchase?");
       desiredQuantity = keyboardReader.nextInt(); 
       
-      //check is the ticket enough for user to purchase.
+      // Check to see if there are enough tickets for this purchase
       if(desiredQuantity > numberOfTickets) {
         System.out.print("There are only " + numberOfTickets + " tickets remaining. ");
       }
-      
-      // remain the maximum number ticket to purchase is 4 tickets per person.
-      if(desiredQuantity > 4) {
+      // Check to see if purchase exceeds customers quota
+      else if(desiredQuantity > 4) {
         System.out.print("You can only buy up to 4 tickets. ");
       }
-      
-      // How many tickets left and how many people purchase the tickets.
-      if(desiredQuantity < 5 && numberOfTickets >= desiredQuantity) {
+      // Complete transaction
+      else {
         numberOfTickets = numberOfTickets - desiredQuantity;
         System.out.println("Remaining Tickets: " + numberOfTickets);
         buyers++;
       }
     }
-    System.out.println("Total Number of Buyers: " + buyers);
+    return buyers;
   }
   
   //// QUESTION 23 FROM MORE LOOPING PROBLEM SHEET ////
+  /**
+   * Prints a number triangle of incremental terms. Prints sum of each row.
+   * Solves question 23 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
+   */
   public static void solveQuestion23() {
     int userInput;
-    System.out.print("How rows would you like to print?");
+    System.out.print("How rows would you like to print? ");
     userInput = keyboardReader.nextInt();
+    
     int[][] nums = new int[userInput][userInput];
     for (int rowIndex = 0; rowIndex < nums.length; rowIndex++) {
       for (int columnIndex = 0; columnIndex <= rowIndex; columnIndex++) {
