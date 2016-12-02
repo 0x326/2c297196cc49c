@@ -17,18 +17,11 @@ import java.math.BigInteger;
  */
 public class GroupProject {
   static Scanner keyboardReader = new Scanner(System.in);
- 
   
   /**
    * 
    */
   public static void main(String[] args) {
-<<<<<<< HEAD
-    System.out.println("Hello there");
-    System.out.println("problem1, problem6, problem16, problem17, problem26, problem47, problem124, problem551, question 6 and question 11. ");
-    System.out.println("Which problem would you want to check");
-    //System.out.println(Problem1.sumOfNaturalNumbers(50));
-=======
     String problemChoice;
     System.out.println("/////////////////");
     System.out.println("///           ///");
@@ -43,13 +36,13 @@ public class GroupProject {
     if(problemChoice.equals("problem1")) {
       solveProblem1();
     }
-      if(problemChoice.equals("problem6")) {
+    if(problemChoice.equals("problem6")) {
       solveProblem6();
     }
     if(problemChoice.equals("problem16")) {
       solveProblem16();
     }
-     if(problemChoice.equals("problem17")) {
+    if(problemChoice.equals("problem17")) {
       solveProblem17();
     }
     if(problemChoice.equals("problem47")) {
@@ -66,8 +59,7 @@ public class GroupProject {
     }
     if(problemChoice.equals("question23")) {
       solveQuestion23();
-  }
->>>>>>> origin/master
+    }
   }
   
   //// PROBLEM 1 ////
@@ -134,13 +126,13 @@ public class GroupProject {
   /**
    * Solves problem at https://projecteuler.net/problem=16
    * /
-  public static void solveProblem16() {
-    BigInteger num = new BigInteger("2");
-    num = num.pow(1000);
-    System.out.print(sumOfDigits(num));
-  }
-  
-  /**
+   public static void solveProblem16() {
+   BigInteger num = new BigInteger("2");
+   num = num.pow(1000);
+   System.out.print(sumOfDigits(num));
+   }
+   
+   /**
    * Computes the sum of digits for a large number
    * @return The sum of the digits
    */
@@ -163,8 +155,8 @@ public class GroupProject {
   //// PROBLEM 17 ////
   
   /** user input a number and translate the number into English and count how many letters would be used.
-   * Solves problem at https://projecteuler.net/problem=17
-   */
+    * Solves problem at https://projecteuler.net/problem=17
+    */
   public static void solveProblem17() {
     // Declare variables
     long totalNumOfLetters;
@@ -364,28 +356,6 @@ public class GroupProject {
     return numberInWords;
   }
   
-<<<<<<< HEAD
-  //// PROBLEM 26 ////
-  
-  /**
-   * Solves problem at https://projecteuler.net/problem=26
-   */
-  public static void solveProblem26() {
-    
-    //use for loop get the largest range of recurring cycle of te number.
-    for (double d = 2; d < 10; d++) {
-      int index = 0;
-      double fraction = 1/d;
-      String frac = Double.toString(fraction);
-      String[] parts = new String[10];
-      parts[index]= frac;
-      System.out.println(parts[0]);
-      index ++;
-    }
-  }
-  
-=======
->>>>>>> origin/master
   //// PROBLEM 47 ////
   
   /**
@@ -524,8 +494,8 @@ public class GroupProject {
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
   
   /** List all the prime number up to the number that user input.
-   * 
-   */
+    * 
+    */
   public static void solveQuestion6() {
     int numberChoice;
     boolean prime = false;
@@ -544,7 +514,7 @@ public class GroupProject {
         }
       }
       if(prime== true)
-    // output the prime number.
+        // output the prime number.
         System.out.print(i + " ");
     }
   }
@@ -552,8 +522,8 @@ public class GroupProject {
   //// QUESTION 11 FROM MORE LOOPING PROBLEM SHEET ////
   
   /** Total 100 tickets and each person can purchase maximum 4 tickets. return total number of buyers.
-   * 
-   */
+    * 
+    */
   public static void solveQuestion11() {
     int numberOfTickets = 100;
     int desiredQuantity = 0;
@@ -583,9 +553,6 @@ public class GroupProject {
     }
     System.out.println("Total Number of Buyers: " + buyers);
   }
-<<<<<<< HEAD
-}
-=======
   
   //// QUESTION 23 FROM MORE LOOPING PROBLEM SHEET ////
   public static void solveQuestion23() {
@@ -615,4 +582,3 @@ public class GroupProject {
     }
   }
 }
->>>>>>> origin/master
