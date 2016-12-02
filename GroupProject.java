@@ -385,10 +385,9 @@ public class GroupProject {
    * This program computes the first N positive integers to have M distinct factors each
    */
   public static void solveProblem47() {
-    Logger.getGlobal().setLevel(Level.OFF);
     // Declare variables
     int desiredNumberOfFactors = 3;
-    int desiredNumberOfConsecutiveNumbers = 3;
+    int desiredNumberOfConsecutiveNumbers = 3; //TODO: Make this variables dependent on user input
     int[] consecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers];
     int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
     int tallyOfConsecutiveIntegers = 0;
@@ -563,6 +562,7 @@ public class GroupProject {
   }
   /** 
    * Simulates a the selling of cinema tickets at ticket booth. Method will not quit until all tickets have been sold. Additionally, one person cannot buy more than four tickets. After all tickets have been sold
+   * @param numberOfTickets The number of tickets to buy
    * @return The number of buyers
    */
   public static int sellTickets(int numberOfTickets) {
@@ -592,6 +592,7 @@ public class GroupProject {
   }
   
   //// QUESTION 23 FROM MORE LOOPING PROBLEM SHEET ////
+  
   /**
    * Prints a number triangle of incremental terms. Prints sum of each row.
    * Solves question 23 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
@@ -616,7 +617,6 @@ public class GroupProject {
         sum += row[columnIndex];
         System.out.print(row[columnIndex]);
         if (columnIndex != row.length - 1 && row[columnIndex + 1] != 0) {
-          
           System.out.print(" + ");
         }
       }
