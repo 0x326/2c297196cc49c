@@ -22,8 +22,44 @@ public class GroupProject {
    * 
    */
   public static void main(String[] args) {
-    //System.out.println("Hello there");
-    solveQuestion23();
+    String problemChoice;
+    System.out.println("/////////////////");
+    System.out.println("///           ///");
+    System.out.println("///CSE PROJECT///");
+    System.out.println("///           ///");
+    System.out.println("/////////////////");
+    System.out.println();
+    System.out.println("What problem do you want solved?"); 
+    System.out.println("Options are: Problem 1, Problem 6, Problem 16, Problem 17, Problem 47, Problem 551, Question 6 on More Looping, Question 11 on More Looping, or Question 23 on More Looping.");
+    problemChoice = keyboardReader.next();
+    problemChoice = problemChoice.toLowerCase();
+    if(problemChoice.equals("problem1")) {
+      solveProblem1();
+    }
+      if(problemChoice.equals("problem6")) {
+      solveProblem6();
+    }
+    if(problemChoice.equals("problem16")) {
+      solveProblem16();
+    }
+     if(problemChoice.equals("problem17")) {
+      solveProblem17();
+    }
+    if(problemChoice.equals("problem47")) {
+      solveProblem47();
+    }
+    if(problemChoice.equals("problem551")) {
+      solveProblem551();
+    }
+    if(problemChoice.equals("question6")) {
+      solveQuestion6();
+    }
+    if(problemChoice.equals("question11")) {
+      solveQuestion11();
+    }
+    if(problemChoice.equals("question23")) {
+      solveQuestion23();
+  }
   }
   
   //// PROBLEM 1 ////
