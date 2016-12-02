@@ -22,8 +22,8 @@ public class GroupProject {
    * 
    */
   public static void main(String[] args) {
-    System.out.println("Hello there");
-    //System.out.println(Problem1.sumOfNaturalNumbers(50));
+    //System.out.println("Hello there");
+    solveQuestion23();
   }
   
   //// PROBLEM 1 ////
@@ -178,106 +178,106 @@ public class GroupProject {
       switch ((numOfDigits - currentDigit) % 3) {
         case 1:
           switch (currentNumber) {
+          case 1:
+            switch (nextNumber) {
+            case 0:
+              numberName = "ten";
+              break;
             case 1:
-              switch (nextNumber) {
-                case 0:
-                  numberName = "ten";
-                  break;
-                case 1:
-                  numberName = "eleven";
-                  break;
-                case 2:
-                  numberName = "twelve";
-                  break;
-                case 3:
-                  numberName = "thirteen";
-                  break;
-                case 4:
-                  numberName = "fourteen";
-                  break;
-                case 5:
-                  numberName = "fifthteen";
-                  break;
-                case 6:
-                  numberName = "sixthteen";
-                  break;
-                case 7:
-                  numberName = "seventhteen";
-                  break;
-                case 8:
-                  numberName = "eightteen";
-                  break;
-                case 9:
-                  numberName = "nineteen";
-                  break;
-                default:
-              }
-              // Since we looked ahead, we need to update the current digit accordingly
-              currentDigit++;
+              numberName = "eleven";
               break;
             case 2:
-              numberName = "twenty";
+              numberName = "twelve";
               break;
             case 3:
-              numberName = "thirty";
+              numberName = "thirteen";
               break;
             case 4:
-              numberName = "fourty";
+              numberName = "fourteen";
               break;
             case 5:
-              numberName = "fifty";
+              numberName = "fifthteen";
               break;
             case 6:
-              numberName = "sixty";
+              numberName = "sixthteen";
               break;
             case 7:
-              numberName = "seventy";
+              numberName = "seventhteen";
               break;
             case 8:
-              numberName = "eighty";
+              numberName = "eightteen";
               break;
             case 9:
-              numberName = "ninety";
+              numberName = "nineteen";
               break;
             default:
-              numberName = "";
           }
+            // Since we looked ahead, we need to update the current digit accordingly
+            currentDigit++;
+            break;
+          case 2:
+            numberName = "twenty";
+            break;
+          case 3:
+            numberName = "thirty";
+            break;
+          case 4:
+            numberName = "fourty";
+            break;
+          case 5:
+            numberName = "fifty";
+            break;
+          case 6:
+            numberName = "sixty";
+            break;
+          case 7:
+            numberName = "seventy";
+            break;
+          case 8:
+            numberName = "eighty";
+            break;
+          case 9:
+            numberName = "ninety";
+            break;
+          default:
+            numberName = "";
+        }
           break;
         case 2:
           numberNamePostfix = "hundred";
           // Fall through
         default:
           switch (currentNumber) {
-            case 1:
-              numberName = "one";
-              break;
-            case 2:
-              numberName = "two";
-              break;
-            case 3:
-              numberName = "three";
-              break;
-            case 4:
-              numberName = "four";
-              break;
-            case 5:
-              numberName = "five";
-              break;
-            case 6:
-              numberName = "six";
-              break;
-            case 7:
-              numberName = "seven";
-              break;
-            case 8:
-              numberName = "eight";
-              break;
-            case 9:
-              numberName = "nine";
-              break;
-            default:
-              numberName = "";
-          }
+          case 1:
+            numberName = "one";
+            break;
+          case 2:
+            numberName = "two";
+            break;
+          case 3:
+            numberName = "three";
+            break;
+          case 4:
+            numberName = "four";
+            break;
+          case 5:
+            numberName = "five";
+            break;
+          case 6:
+            numberName = "six";
+            break;
+          case 7:
+            numberName = "seven";
+            break;
+          case 8:
+            numberName = "eight";
+            break;
+          case 9:
+            numberName = "nine";
+            break;
+          default:
+            numberName = "";
+        }
       }
       if ((numOfDigits - currentDigit) % 3 == 0) {
         switch ((numOfDigits - currentDigit) / 3) {
@@ -290,7 +290,7 @@ public class GroupProject {
           case 3:
             numberNamePostfix += " billion";
             break;
-          }
+        }
       }
       
       // Now that we have gathered the appriate words for the digit,
@@ -311,23 +311,6 @@ public class GroupProject {
     
     // Return result
     return numberInWords;
-  }
-  
-  //// PROBLEM 26 ////
-  
-  /**
-   * Solves problem at https://projecteuler.net/problem=26
-   */
-  public static void solveProblem26() {
-    for (double d = 2; d < 10; d++) {
-      int index = 0;
-      double fraction = 1/d;
-      String frac = Double.toString(fraction);
-      String[] parts = new String[10];
-      parts[index]= frac;
-      System.out.println(parts[0]);
-      index ++;
-    }
   }
   
   //// PROBLEM 47 ////
@@ -438,15 +421,6 @@ public class GroupProject {
     return distinctFactors;
   }
   
-  //// PROBLEM 124 ////
-  
-  /**
-   * Solves problem at https://projecteuler.net/problem=124.
-   * See Problem 47
-   */
-  public static void solveProblem124() {
-    ;
-  }
   
   //// PROBLEM 551 ////
   
@@ -521,5 +495,33 @@ public class GroupProject {
       }
     }
     System.out.println("Total Number of Buyers: " + buyers);
+  }
+  
+  //// QUESTION 23 FROM MORE LOOPING PROBLEM SHEET ////
+  public static void solveQuestion23() {
+    int userInput;
+    System.out.print("How rows would you like to print?");
+    userInput = keyboardReader.nextInt();
+    int[][] nums = new int[userInput][userInput];
+    for (int rowIndex = 0; rowIndex < nums.length; rowIndex++) {
+      for (int columnIndex = 0; columnIndex <= rowIndex; columnIndex++) {
+        nums[rowIndex][columnIndex] = columnIndex + 1;
+      }
+    }
+    for(int[] row : nums) {
+      int sum = 0;
+      for(int columnIndex = 0; columnIndex < row.length; columnIndex++) {
+        if (row[columnIndex] == 0) {
+          break;
+        }
+        sum += row[columnIndex];
+        System.out.print(row[columnIndex]);
+        if (columnIndex != row.length - 1 && row[columnIndex + 1] != 0) {
+          
+          System.out.print(" + ");
+        }
+      }
+      System.out.println(" = " + sum);
+    }
   }
 }
