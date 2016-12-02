@@ -42,7 +42,7 @@ public class GroupProject {
       System.out.println("Options are: Problem 1, Problem 6, Problem 16, Problem 17, Problem 47, Problem 551, Question 6 on More Looping, Question 11 on More Looping, or Question 23 on More Looping.");
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
-      problemChoice = keyboardReader.nextLine().toLowerCase().replaceAll(" ","");
+      problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
       if (problemChoice.equals("exit")) {
         shouldQuit = true;
       }
@@ -85,7 +85,9 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=1
    */
   public static void solveProblem1() {
-    System.out.println(sumOfNaturalNumbers(1000));
+    System.out.println("Enter a number to find the sum of its natural numbers");
+    int numLimit = keyboardReader.nextInt();
+    System.out.println(sumOfNaturalNumbers(numLimit));
   }
   
   /**
@@ -113,7 +115,9 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=6
    */
   public static void solveProblem6() {
-    System.out.println(differenceOperation(100));
+    System.out.println("Enter a number to find the sum of the squares");
+    int limit = keyboardReader.nextInt();
+    System.out.println(differenceOperation(limit));
   }
   
   /**
@@ -145,7 +149,9 @@ public class GroupProject {
    */
   public static void solveProblem16() {
     BigInteger num = new BigInteger("2");
-    num = num.pow(1000);
+    System.out.println("Enter a number to find the sum of digits for a large number");
+    int userNum = keyboardReader.nextInt();
+    num = num.pow(userNum);
     System.out.print(sumOfDigits(num));
   }
   
@@ -387,7 +393,8 @@ public class GroupProject {
   public static void solveProblem47() {
     // Declare variables
     int desiredNumberOfFactors = 3;
-    int desiredNumberOfConsecutiveNumbers = 3; //TODO: Make this variables dependent on user input
+    System.out.println("How many consectutive numbers of factors?");
+    int desiredNumberOfConsecutiveNumbers = keyboardReader.nextInt(); //TODO: Make this variables dependent on user input
     int[] consecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers];
     int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
     int tallyOfConsecutiveIntegers = 0;
