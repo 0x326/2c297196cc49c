@@ -17,12 +17,15 @@ import java.math.BigInteger;
  */
 public class GroupProject {
   static Scanner keyboardReader = new Scanner(System.in);
+ 
   
   /**
    * 
    */
   public static void main(String[] args) {
     System.out.println("Hello there");
+    System.out.println("problem1, problem6, problem16, problem17, problem26, problem47, problem124, problem551, question 6 and question 11. ");
+    System.out.println("Which problem would you want to check");
     //System.out.println(Problem1.sumOfNaturalNumbers(50));
   }
   
@@ -68,17 +71,20 @@ public class GroupProject {
    * @return The numerical difference
    */
   public static int differenceOperation(int limit) {
+    // sum of the squares of first ten nature number.
     int sumOfSquares = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfSquares += Math.pow(num, 2);
     }
     
+    // squares the sum of first ten nature number.
     int sumOfIntegers = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfIntegers += num;
     }
     int squareOfSums = (int)(Math.pow(sumOfIntegers, 2));
     
+    // retun the value.
     return squareOfSums - sumOfSquares; 
   }
   
@@ -86,7 +92,7 @@ public class GroupProject {
   
   /**
    * Solves problem at https://projecteuler.net/problem=16
-   */
+   * /
   public static void solveProblem16() {
     BigInteger num = new BigInteger("2");
     num = num.pow(1000);
@@ -101,17 +107,21 @@ public class GroupProject {
     int sum = 0;
     int numberOfDigits;
     BigInteger constant = new BigInteger("10");
+    
+    // use for loop to get each of the degits of the number and sum all the degits.
     for(numberOfDigits=1; num.divide(constant.pow(numberOfDigits - 1)).compareTo(constant) >= 0; numberOfDigits++);
     for(int i = 0; i < numberOfDigits; i++) {
       sum = sum + (num.mod(constant)).intValue();
       num = num.divide(constant);
     }
+    
+    // return the sum of the degits.
     return sum;
   }
   
   //// PROBLEM 17 ////
   
-  /**
+  /** user input a number and translate the number into English and count how many letters would be used.
    * Solves problem at https://projecteuler.net/problem=17
    */
   public static void solveProblem17() {
@@ -319,6 +329,8 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=26
    */
   public static void solveProblem26() {
+    
+    //use for loop get the largest range of recurring cycle of te number.
     for (double d = 2; d < 10; d++) {
       int index = 0;
       double fraction = 1/d;
@@ -455,6 +467,8 @@ public class GroupProject {
    * See Problem 16
    */
   public static void solveProblem551() {
+    
+    // if n^6=31054319 and calculate n^15.
     System.out.println(computeSeries("31054319", (long) Math.pow(10, 6), (long) Math.pow(10, 15))
                          .toString());
   }
@@ -474,16 +488,19 @@ public class GroupProject {
   
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
   
-  /**
+  /** List all the prime number up to the number that user input.
    * 
    */
   public static void solveQuestion6() {
     int numberChoice;
     boolean prime = false;
     Scanner keyboardReader = new Scanner(System.in);
+    
+    //get user input.
     System.out.println("Enter a number between 1 and 2,147,483,647");
     numberChoice = keyboardReader.nextInt();
     
+    //use for loop to check the prime number 
     for(int i = 2 ; i < numberChoice; i++) {
       prime = true;
       for(int j = 2; j < i; j++) {
@@ -492,13 +509,14 @@ public class GroupProject {
         }
       }
       if(prime== true)
+    // output the prime number.
         System.out.print(i + " ");
     }
   }
   
   //// QUESTION 11 FROM MORE LOOPING PROBLEM SHEET ////
   
-  /**
+  /** Total 100 tickets and each person can purchase maximum 4 tickets. return total number of buyers.
    * 
    */
   public static void solveQuestion11() {
@@ -506,14 +524,22 @@ public class GroupProject {
     int desiredQuantity = 0;
     int buyers = 0;
     while(numberOfTickets > 0) {
+      
+      //get number of user want to purchase.
       System.out.println("How many tickets would you like to purchase?");
       desiredQuantity = keyboardReader.nextInt(); 
+      
+      //check is the ticket enough for user to purchase.
       if(desiredQuantity > numberOfTickets) {
         System.out.print("There are only " + numberOfTickets + " tickets remaining. ");
       }
+      
+      // remain the maximum number ticket to purchase is 4 tickets per person.
       if(desiredQuantity > 4) {
         System.out.print("You can only buy up to 4 tickets. ");
       }
+      
+      // How many tickets left and how many people purchase the tickets.
       if(desiredQuantity < 5 && numberOfTickets >= desiredQuantity) {
         numberOfTickets = numberOfTickets - desiredQuantity;
         System.out.println("Remaining Tickets: " + numberOfTickets);
