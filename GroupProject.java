@@ -24,13 +24,13 @@ public class GroupProject {
   public static void main(String[] args) {
     Logger.getGlobal().setLevel(Level.OFF);
     // Display banner
-    System.out.println("//===================\\");
+    System.out.println("//===================\\\\");
     System.out.println("||                   ||");
     System.out.println("||    CSE PROJECT    ||");
     System.out.println("||  John, Bri, Noah  ||");
     System.out.println("||  Tianyu, Ranyang  ||");
     System.out.println("||                   ||");
-    System.out.println("\\===================//");
+    System.out.println("\\\\===================//");
     
     String problemChoice;
     boolean shouldQuit = false;
@@ -39,7 +39,7 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem 1, Problem 6, Problem 16, Problem 17, Problem 47, Problem 551, Question 6 on More Looping, Question 11 on More Looping, or Question 23 on More Looping.");
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)");
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -75,8 +75,32 @@ public class GroupProject {
       }
       else {
         System.out.println("Input not recognized");
+        Logger.getGlobal().info("Input Received: " + problemChoice);
       }
     } while (!shouldQuit);
+  }
+  
+  /**
+   * Gives the user a prompt and get his int response
+   * @param prompt The prompt printed with {@code System.out.printf}
+   * @param lowestAcceptableValue The lowest value which this method will accept
+   * @param highestAcceptableValue The highest value which this method will accept
+   * @param lowIsInclusive True if {@code lowestAcceptableValue} is itself acceptable
+   * @param highIsInclusive True if {@code highestAcceptableValue} is itself acceptable
+   * @return The user's first acceptable response
+   */
+  public static int getIntFromUser(String prompt, int lowestAcceptableValue, 
+                                   int highestAcceptableValue, boolean lowIsInclusive, 
+                                   boolean highIsInclusive) {
+    int userResponse;
+    do {
+      System.out.printf(prompt);
+      userResponse = keyboardReader.nextInt();
+    } while (((lowIsInclusive && userResponse < lowestAcceptableValue)
+              || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
+      || ((highIsInclusive && userResponse > highestAcceptableValue)
+          || (!highIsInclusive && userResponse >= highestAcceptableValue)));
+    return userResponse;
   }
   
   //// PROBLEM 1 ////
@@ -85,13 +109,16 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=1
    */
   public static void solveProblem1() {
-    System.out.println("Enter a number to find the sum of its natural numbers");
-    int numLimit = keyboardReader.nextInt();
-    System.out.println(sumOfNaturalNumbers(numLimit));
+    System.out.println("Finds the sum of all multiples of 3 and 5 less than N");
+    int numLimit = getIntFromUser("What is N? ",
+                                  1, Integer.MAX_VALUE, true, true);
+    System.out.printf("The sum of the multiples less than %d are: %d%n", numLimit,
+                      sumOfNaturalNumbers(numLimit));
   }
   
   /**
-   * Finds the sum of natural numbers which are multiples of five or three on the interval [1, numLimit)
+   * Finds the sum of natural numbers which are multiples of five or three 
+   * on the interval [1, numLimit)
    * @param numLimit The endpoint to the interval
    * @return The sum of the numbers
    */
@@ -115,9 +142,11 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=6
    */
   public static void solveProblem6() {
-    System.out.println("Enter a number to find the sum of the squares");
-    int limit = keyboardReader.nextInt();
-    System.out.println(differenceOperation(limit));
+    System.out.printf("Evaluates the difference between %s and %s%n",
+                      "Sigma_{k=1}^{N} (k^2)", "(Sigma_{k=1}^{N} (k))^2");
+    int limit = getIntFromUser("Enter a number to find the sum of the squares: ",
+                   1, Integer.MAX_VALUE, true, true);
+    System.out.printf("The difference between the two is: %d%n", differenceOperation(limit));
   }
   
   /**
@@ -148,11 +177,14 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=16
    */
   public static void solveProblem16() {
-    BigInteger num = new BigInteger("2");
-    System.out.println("Enter a number to find the sum of digits for a large number");
-    int userNum = keyboardReader.nextInt();
-    num = num.pow(userNum);
-    System.out.print(sumOfDigits(num));
+    System.out.println("Finds the sum of the digits of a large number in the form a^b");
+    int base = getIntFromUser("Enter a base value: ",
+                  1, Integer.MAX_VALUE, true, true);
+    int power = getIntFromUser("To what exponent shall " + base + " be raised: ",
+                  1, Integer.MAX_VALUE, true, true);
+    BigInteger num = new BigInteger("" + base);
+    num = num.pow(power);
+    System.out.printf("The sum of the digits of %d^%d are: %d%n", base, power, sumOfDigits(num));
   }
   
   /**
@@ -166,7 +198,8 @@ public class GroupProject {
     BigInteger constant = new BigInteger("10");
     
     // Find number of digits
-    for(numberOfDigits=1; num.divide(constant.pow(numberOfDigits - 1)).compareTo(constant) >= 0; numberOfDigits++);
+    for(numberOfDigits=1; num.divide(constant.pow(numberOfDigits - 1)).compareTo(constant) >= 0;
+        numberOfDigits++);
     // Add digits
     for(int i = 0; i < numberOfDigits; i++) {
       sum = sum + (num.mod(constant)).intValue();
@@ -184,19 +217,21 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=17
    */
   public static void solveProblem17() {
+    System.out.println("Finds the total number of letters required to write every numeral "
+                      + "within a given range");
     // Declare variables
     long totalNumOfLetters;
     int[] numTestingRange = new int[2];
     
     // Get range from user
-    System.out.print("Enter the low range: ");
-    numTestingRange[0] = keyboardReader.nextInt();
-    System.out.print("Enter the high range: ");
-    numTestingRange[1] = keyboardReader.nextInt();
+    numTestingRange[0] = getIntFromUser("Enter the low range: ",
+                                        1, Integer.MAX_VALUE, true, false);
+    numTestingRange[1] = getIntFromUser("Enter the high range: ",
+                                       numTestingRange[0], Integer.MAX_VALUE, false, true);
     
     totalNumOfLetters = countLettersOfInterval(numTestingRange[0], numTestingRange[1]);
     
-    System.out.printf("Letters it takes to print all the numbers from %d to %d: %d", 
+    System.out.printf("Letters it takes to print all the numbers from %d to %d: %d%n", 
                       numTestingRange[0], numTestingRange[1], totalNumOfLetters);
   }
   
@@ -388,13 +423,18 @@ public class GroupProject {
   
   /**
    * Solves problem at https://projecteuler.net/problem=47.
-   * This program computes the first N positive integers to have M distinct factors each
+   * This program computes the first N consecutive positive integers to have M distinct factors each
    */
   public static void solveProblem47() {
+    System.out.println("Finds the first N consecutive positive integers"
+                       + "to have each M distinct factors");
     // Declare variables
-    int desiredNumberOfFactors = 3;
-    System.out.println("How many consectutive numbers of factors?");
-    int desiredNumberOfConsecutiveNumbers = keyboardReader.nextInt(); //TODO: Make this variables dependent on user input
+    int desiredNumberOfFactors = 
+      getIntFromUser("How many distinct factors would you like each number to have? ",
+                     1, Integer.MAX_VALUE, true, true);
+    int desiredNumberOfConsecutiveNumbers = 
+      getIntFromUser("How many consecutive numbers having " + desiredNumberOfFactors
+                     + " factors would you like to find? ", 1, Integer.MAX_VALUE, true, true);
     int[] consecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers];
     int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
     int tallyOfConsecutiveIntegers = 0;
@@ -525,13 +565,10 @@ public class GroupProject {
    * Solves question 6 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
    */
   public static void solveQuestion6() {
-    int numberChoice;
-    boolean prime = false;
-    Scanner keyboardReader = new Scanner(System.in);
-    
+    System.out.println("Prints all prime numbers less than a given positive integer");
     // Get upper limit
-    System.out.print("Enter a number between 1 and 2,147,483,647: ");
-    numberChoice = keyboardReader.nextInt();
+    int numberChoice = getIntFromUser("Enter a number between 1 and 2,147,483,647: ",
+                                      1, Integer.MAX_VALUE, true, true);
     
     // Check each number less than the limit
     for(int i = 2 ; i < numberChoice; i++) {
@@ -540,6 +577,7 @@ public class GroupProject {
         System.out.print(i + " ");
       }
     }
+    System.out.println();
   }
   
   /**
@@ -564,11 +602,16 @@ public class GroupProject {
    * Solves question 11 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
    */
   public static void solveQuestion11() {
-    int numOfBuyers = sellTickets(100);
-    System.out.println("Total Number of Buyers: " + numOfBuyers);
+    System.out.println("Simulates a the selling of cinema tickets at ticket booth.");
+    int numOfTicketsToSell = getIntFromUser("How many tickets do we need to sell? ",
+                                           1, Integer.MAX_VALUE, true, true);
+    int numOfBuyers = sellTickets(numOfTicketsToSell);
+    System.out.printf("Total Number of Buyers: %d%n", numOfBuyers);
   }
   /** 
-   * Simulates a the selling of cinema tickets at ticket booth. Method will not quit until all tickets have been sold. Additionally, one person cannot buy more than four tickets. After all tickets have been sold
+   * Simulates a the selling of cinema tickets at ticket booth. 
+   * Method will not quit until all tickets have been sold. 
+   * Additionally, one person cannot buy more than four tickets. After all tickets have been sold
    * @param numberOfTickets The number of tickets to buy
    * @return The number of buyers
    */
@@ -576,22 +619,25 @@ public class GroupProject {
     int desiredQuantity = 0;
     int buyers = 0;
     while(numberOfTickets > 0) {
+      System.out.println("Remaining Tickets: " + numberOfTickets);
       // Get number of tickets wanted by customer
-      System.out.println("How many tickets would you like to purchase?");
-      desiredQuantity = keyboardReader.nextInt(); 
+      System.out.print("How many tickets would you like to purchase? ");
+      desiredQuantity = keyboardReader.nextInt();
       
       // Check to see if there are enough tickets for this purchase
       if(desiredQuantity > numberOfTickets) {
-        System.out.print("There are only " + numberOfTickets + " tickets remaining. ");
+        System.out.println("There are only " + numberOfTickets + " tickets remaining. ");
       }
       // Check to see if purchase exceeds customers quota
       else if(desiredQuantity > 4) {
-        System.out.print("You can only buy up to 4 tickets. ");
+        System.out.println("You can only buy up to 4 tickets. ");
+      }
+      else if (desiredQuantity < 1) {
+        System.out.println("You must buy at least one ticket");
       }
       // Complete transaction
       else {
         numberOfTickets = numberOfTickets - desiredQuantity;
-        System.out.println("Remaining Tickets: " + numberOfTickets);
         buyers++;
       }
     }
@@ -605,9 +651,9 @@ public class GroupProject {
    * Solves question 23 at https://drive.google.com/open?id=0B9AgP9SyhVCWS2pFSTVfSk0zWlE
    */
   public static void solveQuestion23() {
-    int userInput;
-    System.out.print("How rows would you like to print? ");
-    userInput = keyboardReader.nextInt();
+    System.out.println("Prints a triangle of incremental terms and totals the terms of each row");
+    int userInput = getIntFromUser("How rows would you like to print? ",
+                                   1, Integer.MAX_VALUE, true, true);
     
     int[][] nums = new int[userInput][userInput];
     for (int rowIndex = 0; rowIndex < nums.length; rowIndex++) {
