@@ -140,6 +140,31 @@ public class GroupProject {
     return userResponse;
   }
   
+  /**
+   * Gives the user a prompt and get his BigInteger response
+   * @param prompt The prompt printed with {@code System.out.printf}
+   * @param lowestAcceptableValue The lowest value which this method will accept
+   * @param lowIsInclusive True if {@code lowestAcceptableValue} is itself acceptable
+   * @return The user's first acceptable response
+   */
+  public static BigInteger getBigIntegerFromUser(String prompt, BigInteger lowestAcceptableValue,
+                                                 boolean lowIsInclusive) {
+    BigInteger userResponse = new BigInteger("0");
+    boolean hasUserEnteredData;
+    do {
+      hasUserEnteredData = false;
+      System.out.printf(prompt);
+      if (!keyboardReader.hasNextBigInteger()) {
+        String dump = keyboardReader.next();
+        continue;
+      }
+      userResponse = keyboardReader.nextBigInteger();
+      hasUserEnteredData = true;
+    } while (!hasUserEnteredData || userResponse.compareTo(lowestAcceptableValue) == -1
+             || (userResponse.compareTo(lowestAcceptableValue) == 0 && !lowIsInclusive));
+    return userResponse;
+  }
+  
   //// PROBLEM 1 ////
   
   /**
@@ -607,18 +632,25 @@ public class GroupProject {
    */
   public static void solveProblem551() {
     System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
-    System.out.print("Give a starting term: ");
-    BigInteger startingTerm = keyboardReader.nextBigInteger();
-    System.out.print("What is the position of this term? ");
-    long startingPosition = keyboardReader.nextLong(); //TODO: Only allow 2 and greater
-    System.out.print("What term would you like to compute? ");
-    long endingPosition = keyboardReader.nextLong();
+    BigInteger lowestAcceptableValue = new BigInteger("1");
+    BigInteger startingTerm = 
+      getBigIntegerFromUser("Give a starting term: ", lowestAcceptableValue, true);
+    long startingPosition = 
+      getLongFromUser("What is the position of this term? ", 2, Long.MAX_VALUE, true, false);
+    long endingPosition = 
+      getLongFromUser("What term would you like to compute? ", startingPosition, Long.MAX_VALUE,
+                     false, true);
     BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
     System.out.printf("The %d%s term is: %s%n", endingPosition, ordinalSuffix(endingPosition), endingTerm);
   }
   
   /**
-   *
+   * Computes the partial series where each term is the sum of the previous term
+   * and of the sum of the previous term's digits
+   * @param initialTerm The starting term
+   * @param startingIndex The starting term index (does not have to be 1)
+   * @param endingIndex The ending term index
+   * @return The last term of the partial series
    */
   public static BigInteger computeSeries(BigInteger initialTerm, long startingIndex, long endingIndex) {
     BigInteger seriesTerm = initialTerm;
