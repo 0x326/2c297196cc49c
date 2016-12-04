@@ -721,21 +721,19 @@ public class GroupProject {
     int userInput = getIntFromUser("How rows would you like to print? ",
                                    1, Integer.MAX_VALUE, true, true);
     
-    int[][] nums = new int[userInput][userInput];
+    int[][] nums = new int[userInput][];
     for (int rowIndex = 0; rowIndex < nums.length; rowIndex++) {
-      for (int columnIndex = 0; columnIndex <= rowIndex; columnIndex++) {
+      nums[rowIndex] = new int[rowIndex + 1];
+      for (int columnIndex = 0; columnIndex < nums[rowIndex].length; columnIndex++) {
         nums[rowIndex][columnIndex] = columnIndex + 1;
       }
     }
     for(int[] row : nums) {
       int sum = 0;
       for(int columnIndex = 0; columnIndex < row.length; columnIndex++) {
-        if (row[columnIndex] == 0) {
-          break;
-        }
         sum += row[columnIndex];
         System.out.print(row[columnIndex]);
-        if (columnIndex != row.length - 1 && row[columnIndex + 1] != 0) {
+        if (columnIndex != row.length - 1) {
           System.out.print(" + ");
         }
       }
