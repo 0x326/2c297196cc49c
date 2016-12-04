@@ -92,11 +92,18 @@ public class GroupProject {
   public static int getIntFromUser(String prompt, int lowestAcceptableValue, 
                                    int highestAcceptableValue, boolean lowIsInclusive, 
                                    boolean highIsInclusive) {
-    int userResponse;
+    int userResponse = 0;
+    boolean hasUserEnteredData;
     do {
+      hasUserEnteredData = false;
       System.out.printf(prompt);
+      if (!keyboardReader.hasNextInt()) {
+        String dump = keyboardReader.next();
+        continue;
+      }
       userResponse = keyboardReader.nextInt();
-    } while (((lowIsInclusive && userResponse < lowestAcceptableValue)
+      hasUserEnteredData = true;
+    } while (!hasUserEnteredData || ((lowIsInclusive && userResponse < lowestAcceptableValue)
                 || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
                || ((highIsInclusive && userResponse > highestAcceptableValue)
                      || (!highIsInclusive && userResponse >= highestAcceptableValue)));
@@ -115,11 +122,18 @@ public class GroupProject {
   public static long getLongFromUser(String prompt, long lowestAcceptableValue,
                                      long highestAcceptableValue, boolean lowIsInclusive, 
                                      boolean highIsInclusive) {
-    long userResponse;
+    long userResponse = 0;
+    boolean hasUserEnteredData;
     do {
+      hasUserEnteredData = false;
       System.out.printf(prompt);
+      if (!keyboardReader.hasNextLong()) {
+        String dump = keyboardReader.next();
+        continue;
+      }
       userResponse = keyboardReader.nextLong();
-    } while (((lowIsInclusive && userResponse < lowestAcceptableValue)
+      hasUserEnteredData = true;
+    } while (!hasUserEnteredData || ((lowIsInclusive && userResponse < lowestAcceptableValue)
                 || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
                || ((highIsInclusive && userResponse > highestAcceptableValue)
                      || (!highIsInclusive && userResponse >= highestAcceptableValue)));
@@ -462,7 +476,7 @@ public class GroupProject {
    */
   public static void solveProblem47() {
     System.out.println("Finds the first N consecutive positive integers"
-                         + "to have each M distinct factors");
+                         + " to have each M distinct factors");
     // Declare variables
     int desiredNumberOfFactors = 
       getIntFromUser("How many distinct factors would you like each number to have? ",
