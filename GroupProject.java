@@ -614,7 +614,7 @@ public class GroupProject {
     System.out.print("What term would you like to compute? ");
     long endingPosition = keyboardReader.nextLong();
     BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
-    System.out.printf("The %d term is: %s%n", endingPosition, endingTerm);
+    System.out.printf("The %d%s term is: %s%n", endingPosition, ordinalSuffix(endingPosition), endingTerm);
   }
   
   /**
@@ -628,6 +628,14 @@ public class GroupProject {
       seriesTerm = seriesTerm.add(digitSumAsBigInteger);
     }
     return seriesTerm;
+  }
+  
+  /**
+   * Returns the suffix of a given ordinal number (Ex: 1 -> "st", 2 -> "nd", etc.)
+   * @return The suffix
+   */
+  public static String ordinalSuffix(long number) {
+    return "";
   }
   
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
