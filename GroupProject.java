@@ -1,4 +1,4 @@
-// Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu Zhang, Ranyang Hu
+// Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu "Jason" Zhang, Ranyang "Shayne" Hu
 // Unique IDs (respectively): meyerjm, clemenbr, sheridnc, zhangt9, hur4
 // Percent Contribution (respectively): 
 // Instructor: Vijayalakshmi Ramasamy
@@ -7,10 +7,10 @@
 // Filename: GroupProject.java
 // Description: Submission of group assignment to solve Project Euler chanllenges
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.Scanner;
 import java.math.BigInteger;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * This is the class we will use for our presentation of the project
@@ -39,7 +39,7 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)");
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -97,9 +97,32 @@ public class GroupProject {
       System.out.printf(prompt);
       userResponse = keyboardReader.nextInt();
     } while (((lowIsInclusive && userResponse < lowestAcceptableValue)
-              || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
-      || ((highIsInclusive && userResponse > highestAcceptableValue)
-          || (!highIsInclusive && userResponse >= highestAcceptableValue)));
+                || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
+               || ((highIsInclusive && userResponse > highestAcceptableValue)
+                     || (!highIsInclusive && userResponse >= highestAcceptableValue)));
+    return userResponse;
+  }
+  
+  /**
+   * Gives the user a prompt and get his long response
+   * @param prompt The prompt printed with {@code System.out.printf}
+   * @param lowestAcceptableValue The lowest value which this method will accept
+   * @param highestAcceptableValue The highest value which this method will accept
+   * @param lowIsInclusive True if {@code lowestAcceptableValue} is itself acceptable
+   * @param highIsInclusive True if {@code highestAcceptableValue} is itself acceptable
+   * @return The user's first acceptable response
+   */
+  public static long getLongFromUser(String prompt, long lowestAcceptableValue,
+                                     long highestAcceptableValue, boolean lowIsInclusive, 
+                                     boolean highIsInclusive) {
+    long userResponse;
+    do {
+      System.out.printf(prompt);
+      userResponse = keyboardReader.nextLong();
+    } while (((lowIsInclusive && userResponse < lowestAcceptableValue)
+                || (!lowIsInclusive && userResponse <= lowestAcceptableValue))
+               || ((highIsInclusive && userResponse > highestAcceptableValue)
+                     || (!highIsInclusive && userResponse >= highestAcceptableValue)));
     return userResponse;
   }
   
@@ -145,7 +168,7 @@ public class GroupProject {
     System.out.printf("Evaluates the difference between %s and %s%n",
                       "Sigma_{k=1}^{N} (k^2)", "(Sigma_{k=1}^{N} (k))^2");
     int limit = getIntFromUser("Enter a number to find the sum of the squares: ",
-                   1, Integer.MAX_VALUE, true, true);
+                               1, Integer.MAX_VALUE, true, true);
     System.out.printf("The difference between the two is: %d%n", differenceOperation(limit));
   }
   
@@ -179,9 +202,9 @@ public class GroupProject {
   public static void solveProblem16() {
     System.out.println("Finds the sum of the digits of a large number in the form a^b");
     int base = getIntFromUser("Enter a base value: ",
-                  1, Integer.MAX_VALUE, true, true);
+                              1, Integer.MAX_VALUE, true, true);
     int power = getIntFromUser("To what exponent shall " + base + " be raised: ",
-                  1, Integer.MAX_VALUE, true, true);
+                               1, Integer.MAX_VALUE, true, true);
     BigInteger num = new BigInteger("" + base);
     num = num.pow(power);
     System.out.printf("The sum of the digits of %d^%d are: %d%n", base, power, sumOfDigits(num));
@@ -218,21 +241,20 @@ public class GroupProject {
    */
   public static void solveProblem17() {
     System.out.println("Finds the total number of letters required to write every numeral "
-                      + "within a given range");
+                         + "within a given range");
     // Declare variables
     long totalNumOfLetters;
-    int[] numTestingRange = new int[2];
+    long lowRange;
+    long highRange;
     
     // Get range from user
-    numTestingRange[0] = getIntFromUser("Enter the low range: ",
-                                        1, Integer.MAX_VALUE, true, false);
-    numTestingRange[1] = getIntFromUser("Enter the high range: ",
-                                       numTestingRange[0], Integer.MAX_VALUE, false, true);
+    lowRange = getLongFromUser("Enter the low range: ", 1, Long.MAX_VALUE, true, false);
+    highRange = getLongFromUser("Enter the high range: ", lowRange, Long.MAX_VALUE, false, true);
     
-    totalNumOfLetters = countLettersOfInterval(numTestingRange[0], numTestingRange[1]);
+    totalNumOfLetters = countLettersOfInterval(lowRange, highRange);
     
     System.out.printf("Letters it takes to print all the numbers from %d to %d: %d%n", 
-                      numTestingRange[0], numTestingRange[1], totalNumOfLetters);
+                      lowRange, highRange, totalNumOfLetters);
   }
   
   /**
@@ -242,10 +264,10 @@ public class GroupProject {
    * @param endingNumber The inclusive interval endpoint
    * @return The number of letters written across all numbers
    */
-  public static long countLettersOfInterval(int startingNumber, int endingNumber) {
+  public static long countLettersOfInterval(long startingNumber, long endingNumber) {
     long totalNumOfLetters = 0;
-    for (int numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
-      totalNumOfLetters += toNumeral(numToTest).replaceAll(" ", "").length();
+    for (long numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
+      totalNumOfLetters += toNumeral(numToTest, false).replaceAll(" ", "").length();
     }
     return totalNumOfLetters;
   }
@@ -253,9 +275,10 @@ public class GroupProject {
   /**
    * Converts a given number into its numeral (American syntax)
    * @param numToCompute The number to convert
+   * @param isBritishLocale True to insert 'and' after the hundreds place
    * @return The String representation of the number in words
    */
-  public static String toNumeral(long numToCompute) {
+  public static String toNumeral(long numToCompute, boolean isBritishLocale) {
     // Declare Variables
     byte numOfDigits;
     
@@ -278,112 +301,112 @@ public class GroupProject {
       byte nextNumber = numOfDigits - currentDigit > 0
         ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
         : -1;
-      if (numOfDigits >= 3 && (numOfDigits - currentDigit) == 1 && (currentNumber != 0 || nextNumber != 0)) {
+      if (isBritishLocale && numOfDigits >= 3 && (numOfDigits - currentDigit) == 1 && (currentNumber != 0 || nextNumber != 0)) {
         numberNamePrefix = "and";
       }
       switch ((numOfDigits - currentDigit) % 3) {
         case 1:
           switch (currentNumber) {
-          case 1:
-            switch (nextNumber) {
-            case 0:
-              numberName = "ten";
-              break;
             case 1:
-              numberName = "eleven";
+              switch (nextNumber) {
+                case 0:
+                  numberName = "ten";
+                  break;
+                case 1:
+                  numberName = "eleven";
+                  break;
+                case 2:
+                  numberName = "twelve";
+                  break;
+                case 3:
+                  numberName = "thirteen";
+                  break;
+                case 4:
+                  numberName = "fourteen";
+                  break;
+                case 5:
+                  numberName = "fifteen";
+                  break;
+                case 6:
+                  numberName = "sixteen";
+                  break;
+                case 7:
+                  numberName = "seventeen";
+                  break;
+                case 8:
+                  numberName = "eighteen";
+                  break;
+                case 9:
+                  numberName = "nineteen";
+                  break;
+                default:
+              }
+              // Since we looked ahead, we need to update the current digit accordingly
+              currentDigit++;
               break;
             case 2:
-              numberName = "twelve";
+              numberName = "twenty";
               break;
             case 3:
-              numberName = "thirteen";
+              numberName = "thirty";
               break;
             case 4:
-              numberName = "fourteen";
+              numberName = "fourty";
               break;
             case 5:
-              numberName = "fifthteen";
+              numberName = "fifty";
               break;
             case 6:
-              numberName = "sixthteen";
+              numberName = "sixty";
               break;
             case 7:
-              numberName = "seventhteen";
+              numberName = "seventy";
               break;
             case 8:
-              numberName = "eightteen";
+              numberName = "eighty";
               break;
             case 9:
-              numberName = "nineteen";
+              numberName = "ninety";
               break;
             default:
+              numberName = "";
           }
-            // Since we looked ahead, we need to update the current digit accordingly
-            currentDigit++;
-            break;
-          case 2:
-            numberName = "twenty";
-            break;
-          case 3:
-            numberName = "thirty";
-            break;
-          case 4:
-            numberName = "fourty";
-            break;
-          case 5:
-            numberName = "fifty";
-            break;
-          case 6:
-            numberName = "sixty";
-            break;
-          case 7:
-            numberName = "seventy";
-            break;
-          case 8:
-            numberName = "eighty";
-            break;
-          case 9:
-            numberName = "ninety";
-            break;
-          default:
-            numberName = "";
-        }
           break;
         case 2:
           numberNamePostfix = "hundred";
           // Fall through
         default:
           switch (currentNumber) {
-          case 1:
-            numberName = "one";
-            break;
-          case 2:
-            numberName = "two";
-            break;
-          case 3:
-            numberName = "three";
-            break;
-          case 4:
-            numberName = "four";
-            break;
-          case 5:
-            numberName = "five";
-            break;
-          case 6:
-            numberName = "six";
-            break;
-          case 7:
-            numberName = "seven";
-            break;
-          case 8:
-            numberName = "eight";
-            break;
-          case 9:
-            numberName = "nine";
-            break;
-          default:
-            numberName = "";
-        }
+            case 1:
+              numberName = "one";
+              break;
+            case 2:
+              numberName = "two";
+              break;
+            case 3:
+              numberName = "three";
+              break;
+            case 4:
+              numberName = "four";
+              break;
+            case 5:
+              numberName = "five";
+              break;
+            case 6:
+              numberName = "six";
+              break;
+            case 7:
+              numberName = "seven";
+              break;
+            case 8:
+              numberName = "eight";
+              break;
+            case 9:
+              numberName = "nine";
+              break;
+            default:
+              numberName = "";
+          }
       }
       if ((numOfDigits - currentDigit) % 3 == 0) {
         switch ((numOfDigits - currentDigit) / 3) {
@@ -395,6 +418,18 @@ public class GroupProject {
             break;
           case 3:
             numberNamePostfix += " billion";
+            break;
+          case 4:
+            numberNamePostfix += " trillion";
+            break;
+          case 5:
+            numberNamePostfix += " quadrillion";
+            break;
+          case 6:
+            numberNamePostfix += "  quintillion";
+            break;
+          case 7:
+            numberNamePostfix += "  sextillion";
             break;
         }
       }
@@ -427,14 +462,14 @@ public class GroupProject {
    */
   public static void solveProblem47() {
     System.out.println("Finds the first N consecutive positive integers"
-                       + "to have each M distinct factors");
+                         + "to have each M distinct factors");
     // Declare variables
     int desiredNumberOfFactors = 
       getIntFromUser("How many distinct factors would you like each number to have? ",
                      1, Integer.MAX_VALUE, true, true);
     int desiredNumberOfConsecutiveNumbers = 
       getIntFromUser("How many consecutive numbers having " + desiredNumberOfFactors
-                     + " factors would you like to find? ", 1, Integer.MAX_VALUE, true, true);
+                       + " factors would you like to find? ", 1, Integer.MAX_VALUE, true, true);
     int[] consecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers];
     int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
     int tallyOfConsecutiveIntegers = 0;
@@ -604,7 +639,7 @@ public class GroupProject {
   public static void solveQuestion11() {
     System.out.println("Simulates a the selling of cinema tickets at ticket booth.");
     int numOfTicketsToSell = getIntFromUser("How many tickets do we need to sell? ",
-                                           1, Integer.MAX_VALUE, true, true);
+                                            1, Integer.MAX_VALUE, true, true);
     int numOfBuyers = sellTickets(numOfTicketsToSell);
     System.out.printf("Total Number of Buyers: %d%n", numOfBuyers);
   }
