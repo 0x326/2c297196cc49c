@@ -19,7 +19,7 @@ public class GroupProject {
   static Scanner keyboardReader = new Scanner(System.in);
   
   /**
-   * 
+   * Presents a main menu where the user can choose the solutions of this project
    */
   public static void main(String[] args) {
     Logger.getGlobal().setLevel(Level.OFF);
@@ -485,11 +485,10 @@ public class GroupProject {
       getIntFromUser("How many consecutive numbers having " + desiredNumberOfFactors
                        + " factors would you like to find? ", 1, Integer.MAX_VALUE, true, true);
     int[] consecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers];
-    int[][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
-    int tallyOfConsecutiveIntegers = 0;
     
     // Begin testing the interval [1, infinity) for integers until we find enough consecutive numbers
-    for (int i = 1; tallyOfConsecutiveIntegers < desiredNumberOfConsecutiveNumbers; i++) {
+    for (int tallyOfConsecutiveIntegers = 0, i = 1;
+         tallyOfConsecutiveIntegers < desiredNumberOfConsecutiveNumbers; i++) {
       Logger.getGlobal().info("i: " + i);
       // Factor the integer
       int[] factorList = primeFactor(i);
@@ -499,26 +498,28 @@ public class GroupProject {
       if (factorList.length == desiredNumberOfFactors) {
         // Store the number the factors represent
         consecutiveNumbers[tallyOfConsecutiveIntegers] = i;
-        // Store its factors as well
-        if (factorList.length > factorsOfConsecutiveNumbers[tallyOfConsecutiveIntegers].length) {
-          factorsOfConsecutiveNumbers[tallyOfConsecutiveIntegers] = new int[factorList.length];
-        }
-        factorsOfConsecutiveNumbers[tallyOfConsecutiveIntegers] = factorList;
         tallyOfConsecutiveIntegers++;
       }
       else {
         tallyOfConsecutiveIntegers = 0;
         java.util.Arrays.fill(consecutiveNumbers, 0);
-        factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][desiredNumberOfFactors];
       }
     }
-    // Print consecutive numbers and their factors
+    // Factor the consecutive numbers again, this time noting the power of the prime base
+    int[][][] factorsOfConsecutiveNumbers = new int[desiredNumberOfConsecutiveNumbers][][];
     for (int numberIndex = 0; numberIndex < consecutiveNumbers.length; numberIndex++) {
-      System.out.print(consecutiveNumbers[numberIndex] + " =");
+      int[] factors = primeFactor(consecutiveNumbers[numberIndex]);
+      factorsOfConsecutiveNumbers[numberIndex] = groupFactors(factors);
+    }
+    // Print the consecutive numbers and their factors
+    for (int numberIndex = 0; numberIndex < consecutiveNumbers.length; numberIndex++) {
+      System.out.print(consecutiveNumbers[numberIndex] + " = ");
       // Cycle through factors
-      System.out.print(" " + factorsOfConsecutiveNumbers[numberIndex][0]);
-      for (int factorIndex = 1; factorIndex < factorsOfConsecutiveNumbers[numberIndex].length; factorIndex++) {
-        System.out.print(" X " + factorsOfConsecutiveNumbers[numberIndex][factorIndex]);
+      System.out.print(factorsOfConsecutiveNumbers[numberIndex][0][0]);
+      System.out.print("^" + factorsOfConsecutiveNumbers[numberIndex][1][0]);
+      for (int factorIndex = 1; factorIndex < factorsOfConsecutiveNumbers[numberIndex][0].length; factorIndex++) {
+        System.out.print(" X " + factorsOfConsecutiveNumbers[numberIndex][0][factorIndex]);
+        System.out.print("^" + factorsOfConsecutiveNumbers[numberIndex][1][factorIndex]);
       }
       System.out.println();
     }
@@ -560,27 +561,43 @@ public class GroupProject {
   public static int[] filterToDistinctFactors(int[] factorList) {
     int[] distinctFactors = new int[factorList.length];
     int numOfDistinctFactors = 0;
+    int lastFactor = 0;
     for (int factor : factorList) {
-      java.util.Arrays.sort(distinctFactors);
       // If `factor` is not already counted in `distinctFactors`,
       // Then add it to `distinctFactors`
-      if (java.util.Arrays.binarySearch(distinctFactors, factor) < 0) {
-        distinctFactors[0] = factor;
-        numOfDistinctFactors++;
+      if (factor != lastFactor) {
+        distinctFactors[numOfDistinctFactors++] = factor;
       }
+      lastFactor = factor;
     }
-    java.util.Arrays.sort(distinctFactors);
-    if (numOfDistinctFactors > 0) {
-      distinctFactors = java.util.Arrays.copyOfRange(distinctFactors, 
-                                                     distinctFactors.length - numOfDistinctFactors, 
-                                                     distinctFactors.length);
-    }
-    else {
-      distinctFactors = new int[0];
-    }
+    distinctFactors = java.util.Arrays.copyOf(distinctFactors, numOfDistinctFactors);
     return distinctFactors;
   }
   
+  /**
+   * Filters an array of factors into an array of distinct factors 
+   * while noting the number each factor occurs
+   * @param factorList The int array of factors
+   * @return A parallel array: {distinct factors, times of occurance}
+   */
+  public static int[][] groupFactors(int[] factorList) {
+    int[] distinctFactors = new int[factorList.length];
+    int[] timesOfOccurance = new int[factorList.length];
+    int numOfDistinctFactors = 0;
+    int lastFactor = 0;
+    for (int factor : factorList) {
+      // If `factor` is not already counted in `distinctFactors`,
+      // Then add it to `distinctFactors`
+      if (factor != lastFactor) {
+        distinctFactors[numOfDistinctFactors++] = factor;
+      }
+      timesOfOccurance[numOfDistinctFactors - 1]++;
+      lastFactor = factor;
+    }
+    distinctFactors = java.util.Arrays.copyOf(distinctFactors, numOfDistinctFactors);
+    timesOfOccurance = java.util.Arrays.copyOf(timesOfOccurance, numOfDistinctFactors);
+    return new int[][] {distinctFactors, timesOfOccurance};
+  }
   
   //// PROBLEM 551 ////
   
