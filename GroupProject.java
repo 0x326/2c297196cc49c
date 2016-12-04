@@ -606,16 +606,23 @@ public class GroupProject {
    * See Problem 16
    */
   public static void solveProblem551() {
-    System.out.println(computeSeries("31054319", (long) Math.pow(10, 6), (long) Math.pow(10, 15))
-                         .toString());
+    System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
+    System.out.print("Give a starting term: ");
+    BigInteger startingTerm = keyboardReader.nextBigInteger();
+    System.out.print("What is the position of this term? ");
+    long startingPosition = keyboardReader.nextLong(); //TODO: Only allow 2 and greater
+    System.out.print("What term would you like to compute? ");
+    long endingPosition = keyboardReader.nextLong();
+    BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
+    System.out.printf("The %d term is: %s%n", endingPosition, endingTerm);
   }
   
   /**
    *
    */
-  public static BigInteger computeSeries(String initialTerm, long startingIndex, long endingIndex) {
-    BigInteger seriesTerm = new BigInteger(initialTerm);
-    for (long i = startingIndex; i <= endingIndex; i++) {
+  public static BigInteger computeSeries(BigInteger initialTerm, long startingIndex, long endingIndex) {
+    BigInteger seriesTerm = initialTerm;
+    for (long i = startingIndex; i < endingIndex; i++) {
       Integer digitSum = new Integer(sumOfDigits(seriesTerm));
       BigInteger digitSumAsBigInteger = new BigInteger(digitSum.toString());
       seriesTerm = seriesTerm.add(digitSumAsBigInteger);
