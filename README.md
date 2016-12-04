@@ -17,7 +17,7 @@ CSE 174 Project Euler Group
  - [x] Comment code so it is readable by others
  - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Problem 6
@@ -27,7 +27,7 @@ CSE 174 Project Euler Group
  - [x] Comment code so it is readable by others
  - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Problem 16
@@ -37,7 +37,7 @@ CSE 174 Project Euler Group
  - [x] Comment code so it is readable by others
  - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Problem 17
@@ -57,7 +57,7 @@ CSE 174 Project Euler Group
  - [x] Comment code so it is readable by others
  - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Problem 551
@@ -108,7 +108,7 @@ CSE 174 Project Euler Group
 ### Final Testing
 
  - [ ] Create test cases for the above problems
- - [ ] Test Presentation UI
+ - [x] Test Presentation UI
  - [ ] Add file handling
 
 ## Code bundling
