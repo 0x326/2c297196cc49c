@@ -39,38 +39,41 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Problem551WithFiles, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
       if (problemChoice.equals("exit")) {
         shouldQuit = true;
       }
-      else if(problemChoice.equals("problem1")) {
+      else if (problemChoice.equals("problem1")) {
         solveProblem1();
       }
-      else if(problemChoice.equals("problem6")) {
+      else if (problemChoice.equals("problem6")) {
         solveProblem6();
       }
-      else if(problemChoice.equals("problem16")) {
+      else if (problemChoice.equals("problem16")) {
         solveProblem16();
       }
-      else if(problemChoice.equals("problem17")) {
+      else if (problemChoice.equals("problem17")) {
         solveProblem17();
       }
-      else if(problemChoice.equals("problem47")) {
+      else if (problemChoice.equals("problem47")) {
         solveProblem47();
       }
-      else if(problemChoice.equals("problem551")) {
+      else if (problemChoice.equals("problem551")) {
         solveProblem551();
       }
-      else if(problemChoice.equals("question6")) {
+      else if (problemChoice.equals("problem551withfiles")) {
+        solveProblem551WithFiles();
+      }
+      else if (problemChoice.equals("question6")) {
         solveQuestion6();
       }
-      else if(problemChoice.equals("question11")) {
+      else if (problemChoice.equals("question11")) {
         solveQuestion11();
       }
-      else if(problemChoice.equals("question23")) {
+      else if (problemChoice.equals("question23")) {
         solveQuestion23();
       }
       else {
@@ -163,6 +166,27 @@ public class GroupProject {
     } while (!hasUserEnteredData || userResponse.compareTo(lowestAcceptableValue) == -1
              || (userResponse.compareTo(lowestAcceptableValue) == 0 && !lowIsInclusive));
     return userResponse;
+  }
+  
+  /**
+   * Gives the user a prompt and get a valid filename from the user
+   * @param prompt The prompt printed with {@code System.out.printf}
+   * @return The file/filename specified by the user //TODO: Update this documentation
+   */
+  public static void getFileFromUser(String prompt) { //TODO: Change from void to whatever file stream object is needed
+    /*boolean hasUserEnteredData;
+    do {
+      hasUserEnteredData = false;
+      System.out.printf(prompt);
+      if (!keyboardReader.hasNextBigInteger()) {
+        String dump = keyboardReader.next();
+        continue;
+      }
+      userResponse = keyboardReader.nextBigInteger();
+      hasUserEnteredData = true;
+    } while (!hasUserEnteredData || userResponse.compareTo(lowestAcceptableValue) == -1
+             || (userResponse.compareTo(lowestAcceptableValue) == 0 && !lowIsInclusive));
+    return userResponse;*/
   }
   
   //// PROBLEM 1 ////
@@ -645,6 +669,29 @@ public class GroupProject {
   }
   
   /**
+   * Solves problem at https://projecteuler.net/problem=551.
+   * This time reading input from a file instead of from the user
+   * and saving the output to another file
+   * @see solveProblem551
+   */
+  public static void solveProblem551WithFiles() {
+    System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
+    System.out.println("The rest of this solution has yet to be implemented");
+    //getFileFromUser("Where is the input file? "); // At anytime, allow the user to quit
+    //getFileFromUser("Where is the output file? ");
+    /*BigInteger lowestAcceptableValue = new BigInteger("1");
+    BigInteger startingTerm = 
+      getBigIntegerFromUser("Give a starting term: ", lowestAcceptableValue, true);
+    long startingPosition = 
+      getLongFromUser("What is the position of this term? ", 2, Long.MAX_VALUE, true, false);
+    long endingPosition = 
+      getLongFromUser("What term would you like to compute? ", startingPosition, Long.MAX_VALUE,
+                     false, true);
+    BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
+    System.out.printf("The %d%s term is: %s%n", endingPosition, ordinalSuffix(endingPosition), endingTerm);*/
+  }
+  
+  /**
    * Computes the partial series where each term is the sum of the previous term
    * and of the sum of the previous term's digits
    * @param initialTerm The starting term
@@ -667,7 +714,18 @@ public class GroupProject {
    * @return The suffix
    */
   public static String ordinalSuffix(long number) {
-    return "";
+    String suffix;
+    number %= 100;
+    if(number % 10 == 1 && number != 11) {
+      suffix = "st";
+    } else if (number % 10 == 2 && number != 12) {
+      suffix = "nd";
+    } else if (number % 10 == 3 && number != 13) {
+      suffix = "rd";
+    } else {
+      suffix = "th";
+    }
+    return suffix;
   }
   
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
