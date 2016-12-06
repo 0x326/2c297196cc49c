@@ -112,6 +112,14 @@ CSE 174 Project Euler Group
  - [x] Add file handling
  - [ ] Check for `//TODO:` comments
 
+## Grading Rubric from <https://drive.google.com/file/d/0B9AgP9SyhVCWOVdOVTUxbkdZdDA/>
+
+ - [ ] 40 points for completeness – The program meets with all the things it is required to do.
+ - [ ] 10 points for usability – The program uses features to make the program as easy to use as possible. This includes special instructions to the users, documentation, input validation, etc.
+ - [ ] 10 points for source code – The program follows format and comment guidelines in source code in a way that is consistent with what we have learned in CSE 174.
+ - [ ] 10 points for file handling – At least one of the programs use the file handling concept.
+ - [ ] 10 points –  If your program does "what it should", and meets the expectations, your score for this part will be 10 points.  If your program goes above and beyond expectations (you learned some new features, or your program stands out in some positive ways), you could earn extra points here.  
+
 ## Code bundling
 (If we ever wanted to make a JAR file)
 
