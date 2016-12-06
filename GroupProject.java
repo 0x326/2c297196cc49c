@@ -189,10 +189,13 @@ public class GroupProject {
         break;
       }
       chosenFile = new File(filename);
-      if (shouldExist && chosenFile.isFile() || !shouldExist && !chosenFile.isDirectory()) {
+      if (shouldExist && chosenFile.isFile()) {
         if (chosenFile.canRead() && (shouldHaveWriteAccess && chosenFile.canWrite() || !shouldHaveWriteAccess)) {
           isDesiredFile = true;
         }
+      }
+      else if (!shouldExist && !chosenFile.isDirectory()) {
+        isDesiredFile = true;
       }
     }
     return chosenFile;
@@ -695,14 +698,35 @@ public class GroupProject {
     File outputFile = getFileFromUser("Where would you like to save the result? ", false, true);
     // Read data from input file
     int numOfSetsFound = 0;
-    BigInteger[] startingTerms = new BigInteger[10];
-    long[] startingPositions = new long[startingTerms.length];
-    long[] endingPositions = new long[startingTerms.length];
+    BigInteger[] startingTerms = null;
+    long[] startingPositions = null;
+    long[] endingPositions = null;
     Scanner fileReader = null;
     boolean needsToReadFile = true;
     while (needsToReadFile) {
+      numOfSetsFound = 0;
+      startingTerms = new BigInteger[10];
+      startingPositions = new long[startingTerms.length];
+      endingPositions = new long[startingTerms.length];
       try {
         fileReader = new Scanner(inputFile);
+        for (int iteration = 0; fileReader.hasNextBigInteger() || fileReader.hasNextLong(); ++iteration, iteration %= 3) {
+          if (iteration == 0) {
+            BigInteger startingTerm = fileReader.nextBigInteger();
+            if (numOfSetsFound == startingTerms.length) {
+              startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound + 10);
+              startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound + 10);
+              endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound + 10);
+            }
+            startingTerms[numOfSetsFound] = startingTerm;
+          }
+          else if (iteration == 1) {
+            startingPositions[numOfSetsFound] = fileReader.nextLong();
+          }
+          else {
+            endingPositions[numOfSetsFound++] = fileReader.nextLong();
+          }
+        }
       }
       catch (java.lang.Exception err) {
         // Get new input file from user
@@ -716,23 +740,7 @@ public class GroupProject {
         }
       }
     }
-    for (int iteration = 0; fileReader.hasNext(); ++iteration, iteration %= 3) {
-      if (iteration == 0) {
-        BigInteger startingTerm = fileReader.nextBigInteger();
-        if (numOfSetsFound == startingTerms.length) {
-          startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound + 10);
-          startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound + 10);
-          endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound + 10);
-        }
-        startingTerms[numOfSetsFound] = startingTerm;
-      }
-      else if (iteration == 1) {
-        startingPositions[numOfSetsFound] = fileReader.nextLong();
-      }
-      else {
-        endingPositions[numOfSetsFound++] = fileReader.nextLong();
-      }
-    }
+    // Resize terms
     startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound);
     startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound);
     endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound);
