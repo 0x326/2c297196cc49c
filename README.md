@@ -63,11 +63,11 @@ CSE 174 Project Euler Group
 ### Problem 551
 
  - [x] Design algorithm
- - [ ] Create code to solve the problem
+ - [x] Create code to solve the problem
  - [ ] Comment code so it is readable by others
- - [ ] Create javadoc documentation
+ - [x] Create javadoc documentation
  - [ ] Write reasoning for our choice of algorithm
- - [ ] Make code calculate based on user input
+ - [x] Make code calculate based on user input
  - [ ] Test code
 
 ### Question 6 From "More Looping" Problem Sheet
@@ -109,7 +109,8 @@ CSE 174 Project Euler Group
 
  - [ ] Create test cases for the above problems
  - [x] Test Presentation UI
- - [ ] Add file handling
+ - [x] Add file handling
+ - [ ] Check for `//TODO:` comments
 
 ## Code bundling
 (If we ever wanted to make a JAR file)

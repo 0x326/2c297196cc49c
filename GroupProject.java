@@ -710,7 +710,7 @@ public class GroupProject {
       endingPositions = new long[startingTerms.length];
       try {
         fileReader = new Scanner(inputFile);
-        for (int iteration = 0; fileReader.hasNextBigInteger() || fileReader.hasNextLong(); ++iteration, iteration %= 3) {
+        for (int iteration = 0; fileReader.hasNextBigInteger() || fileReader.hasNextLong(); ++iteration, iteration %= 3) { //TODO: Fix infinite loop
           if (iteration == 0) {
             BigInteger startingTerm = fileReader.nextBigInteger();
             if (numOfSetsFound == startingTerms.length) {
