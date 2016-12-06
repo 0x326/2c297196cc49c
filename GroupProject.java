@@ -9,6 +9,7 @@
 
 import java.util.Scanner;
 import java.math.BigInteger;
+import java.io.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -171,22 +172,30 @@ public class GroupProject {
   /**
    * Gives the user a prompt and get a valid filename from the user
    * @param prompt The prompt printed with {@code System.out.printf}
+   * @param shouldExist True if the user must enter a file which already exists
    * @return The file/filename specified by the user //TODO: Update this documentation
    */
-  public static void getFileFromUser(String prompt) { //TODO: Change from void to whatever file stream object is needed
-    /*boolean hasUserEnteredData;
-    do {
-      hasUserEnteredData = false;
+  public static File getFileFromUser(String prompt, boolean shouldExist, boolean shouldHaveWriteAccess) {
+    File chosenFile = null;
+    boolean isDesiredFile = false;
+    String filename;
+    while (!isDesiredFile) {
       System.out.printf(prompt);
-      if (!keyboardReader.hasNextBigInteger()) {
-        String dump = keyboardReader.next();
-        continue;
+      /*filename = keyboardReader.nextLine(); //TODO: Remove this comment block
+      keyboardReader.next();*/
+      filename = keyboardReader.next();
+      if (filename.equals(":q")) {
+        chosenFile = null;
+        break;
       }
-      userResponse = keyboardReader.nextBigInteger();
-      hasUserEnteredData = true;
-    } while (!hasUserEnteredData || userResponse.compareTo(lowestAcceptableValue) == -1
-             || (userResponse.compareTo(lowestAcceptableValue) == 0 && !lowIsInclusive));
-    return userResponse;*/
+      chosenFile = new File(filename);
+      if (shouldExist && chosenFile.isFile() || !shouldExist && !chosenFile.isDirectory()) {
+        if (chosenFile.canRead() && (shouldHaveWriteAccess && chosenFile.canWrite() || !shouldHaveWriteAccess)) {
+          isDesiredFile = true;
+        }
+      }
+    }
+    return chosenFile;
   }
   
   //// PROBLEM 1 ////
@@ -675,20 +684,93 @@ public class GroupProject {
    * @see solveProblem551
    */
   public static void solveProblem551WithFiles() {
+    // Display greeting
     System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
     System.out.println("The rest of this solution has yet to be implemented");
-    //getFileFromUser("Where is the input file? "); // At anytime, allow the user to quit
-    //getFileFromUser("Where is the output file? ");
-    /*BigInteger lowestAcceptableValue = new BigInteger("1");
-    BigInteger startingTerm = 
-      getBigIntegerFromUser("Give a starting term: ", lowestAcceptableValue, true);
-    long startingPosition = 
-      getLongFromUser("What is the position of this term? ", 2, Long.MAX_VALUE, true, false);
-    long endingPosition = 
-      getLongFromUser("What term would you like to compute? ", startingPosition, Long.MAX_VALUE,
-                     false, true);
-    BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
-    System.out.printf("The %d%s term is: %s%n", endingPosition, ordinalSuffix(endingPosition), endingTerm);*/
+    // Ask for filenames
+    File inputFile = getFileFromUser("Where is the file of series you would like to compute? ", true, false);
+    if (inputFile == null) {
+      return; //TODO: Check to see if this is good styling/structuring
+    }
+    File outputFile = getFileFromUser("Where would you like to save the result? ", false, true);
+    // Read data from input file
+    int numOfSetsFound = 0;
+    BigInteger[] startingTerms = new BigInteger[10];
+    long[] startingPositions = new long[startingTerms.length];
+    long[] endingPositions = new long[startingTerms.length];
+    Scanner fileReader = null;
+    boolean needsToReadFile = true;
+    while (needsToReadFile) {
+      try {
+        fileReader = new Scanner(inputFile);
+      }
+      catch (java.lang.Exception err) {
+        // Get new input file from user
+        System.out.println("There seems to be a problem reading from the file you specified earlier");
+        inputFile = 
+          getFileFromUser("Where is the file of series you would like to compute? ", true, false);
+        if (inputFile == null) {
+          System.out.println("Read operation abandoned");
+          needsToReadFile = false;
+          return;
+        }
+      }
+    }
+    for (int iteration = 0; fileReader.hasNext(); ++iteration, iteration %= 3) {
+      if (iteration == 0) {
+        BigInteger startingTerm = fileReader.nextBigInteger();
+        if (numOfSetsFound == startingTerms.length) {
+          startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound + 10);
+          startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound + 10);
+          endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound + 10);
+        }
+        startingTerms[numOfSetsFound] = startingTerm;
+      }
+      else if (iteration == 1) {
+        startingPositions[numOfSetsFound] = fileReader.nextLong();
+      }
+      else {
+        endingPositions[numOfSetsFound++] = fileReader.nextLong();
+      }
+    }
+    startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound);
+    startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound);
+    endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound);
+    fileReader.close();
+    // Do computations
+    BigInteger[] endingTerms = new BigInteger[startingTerms.length];
+    for (int arrayIndex = 0; arrayIndex < endingTerms.length; arrayIndex++) {
+      endingTerms[arrayIndex] = 
+        computeSeries(startingTerms[arrayIndex], startingPositions[arrayIndex],
+                      endingPositions[arrayIndex]);
+    }
+    // Write results to output file
+    PrintWriter fileWriter = null;
+    boolean needsToWriteFile = true;
+    while (needsToWriteFile) {
+      try {
+        if (fileWriter != null) {
+          fileWriter.close();
+        }
+        fileWriter = new PrintWriter(outputFile);
+        for (int arrayIndex = 0; arrayIndex < endingTerms.length; arrayIndex++) {
+          fileWriter.printf("The %d%s term is: %s%n", endingPositions[arrayIndex],
+                            ordinalSuffix(endingPositions[arrayIndex]), endingTerms[arrayIndex]);
+        }
+        System.out.println("File saved successfully");
+        needsToWriteFile = false;
+      }
+      catch (java.lang.Exception err) {
+        // Get new output file from user
+        System.out.println("There seems to be a problem writing to the file you specified earlier "
+                          + "but we still have your data");
+        outputFile = getFileFromUser("Where would you like to save the result? ", false, true);
+        if (outputFile == null) {
+          System.out.println("Write operation abandoned");
+          needsToWriteFile = false;
+        }
+      }
+    }
   }
   
   /**
@@ -700,11 +782,21 @@ public class GroupProject {
    * @return The last term of the partial series
    */
   public static BigInteger computeSeries(BigInteger initialTerm, long startingIndex, long endingIndex) {
+    byte percentDone = 0;
+    long lastHeartbeatIteration = startingIndex;
+    byte lastHeartbeatPercent = percentDone;
     BigInteger seriesTerm = initialTerm;
     for (long i = startingIndex; i < endingIndex; i++) {
       Integer digitSum = new Integer(sumOfDigits(seriesTerm));
       BigInteger digitSumAsBigInteger = new BigInteger(digitSum.toString());
       seriesTerm = seriesTerm.add(digitSumAsBigInteger);
+      percentDone = (byte) ((i - startingIndex) * 100 / (endingIndex - startingIndex));
+      if (percentDone - lastHeartbeatPercent > 5 || i - lastHeartbeatIteration > 100000) {
+        // Send new heartbeat
+        System.out.printf(" %d%% done: %d%s term is %s%n", percentDone, i, ordinalSuffix(i), seriesTerm);
+        lastHeartbeatPercent = percentDone;
+        lastHeartbeatIteration = i;
+      }
     }
     return seriesTerm;
   }
