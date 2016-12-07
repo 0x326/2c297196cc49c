@@ -316,7 +316,7 @@ public class GroupProject {
    */
   public static void solveProblem17() {
     System.out.println("Finds the total number of letters required to write every numeral "
-                         + "within a given range");
+                         + "within a given range in American Locale");
     // Declare variables
     long totalNumOfLetters;
     long lowRange;
@@ -372,7 +372,6 @@ public class GroupProject {
       // Get number
       byte currentNumber = (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit)) % 10);
       // Translate digit place to words, such as 'hundred' or 'thousand'
-      //TODO: Make this work for higher places such as 'hundred thousand'
       byte nextNumber = numOfDigits - currentDigit > 0
         ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
         : -1;
@@ -448,7 +447,9 @@ public class GroupProject {
           }
           break;
         case 2:
-          numberNamePostfix = "hundred";
+          if (currentNumber != 0) {
+            numberNamePostfix = "hundred";
+          }
           // Fall through
         default:
           switch (currentNumber) {
@@ -501,10 +502,10 @@ public class GroupProject {
             numberNamePostfix += " quadrillion";
             break;
           case 6:
-            numberNamePostfix += "  quintillion";
+            numberNamePostfix += " quintillion";
             break;
           case 7:
-            numberNamePostfix += "  sextillion";
+            numberNamePostfix += " sextillion";
             break;
         }
       }
