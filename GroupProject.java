@@ -370,10 +370,10 @@ public class GroupProject {
       String numberNamePostfix = "";
       String numberNamePrefix = "";
       // Get number
-      byte currentNumber = (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit)) % 10);
+      byte currentNumber = (byte) ((numToCompute / pow(10, numOfDigits - currentDigit)) % 10);
       // Translate digit place to words, such as 'hundred' or 'thousand'
       byte nextNumber = numOfDigits - currentDigit > 0
-        ? (byte) ((numToCompute / Math.pow(10, numOfDigits - currentDigit - 1)) % 10)
+        ? (byte) ((numToCompute / pow(10, numOfDigits - currentDigit - 1)) % 10)
         : -1;
       if (isBritishLocale && numOfDigits >= 3 && (numOfDigits - currentDigit) == 1 && (currentNumber != 0 || nextNumber != 0)) {
         numberNamePrefix = "and";
@@ -528,6 +528,20 @@ public class GroupProject {
     
     // Return result
     return numberInWords;
+  }
+  
+  /**
+   * Raises a base to a given power. Similar to Math.pow(a, b) except returns a long value
+   * @param base The base to raise
+   * @param exponent The power to which the base is raised
+   * @return Returns a^b
+   */
+  public static long pow(int base, int exponent) {
+    long result = 1;
+    for (int timesMultiplied = 0; timesMultiplied < exponent; timesMultiplied++) {
+      result *= base;
+    }
+    return result;
   }
   
   //// PROBLEM 47 ////
