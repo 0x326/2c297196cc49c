@@ -40,7 +40,7 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, Problem47, Problem551, Problem551WithFiles, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, Problem47, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -64,12 +64,6 @@ public class GroupProject {
       }
       else if (problemChoice.equals("problem47")) {
         solveProblem47();
-      }
-      else if (problemChoice.equals("problem551")) {
-        solveProblem551();
-      }
-      else if (problemChoice.equals("problem551withfiles")) {
-        solveProblem551WithFiles();
       }
       else if (problemChoice.equals("question6")) {
         solveQuestion6();
@@ -904,9 +898,24 @@ public class GroupProject {
     System.out.println("Simulates a the selling of cinema tickets at ticket booth.");
     int numOfTicketsToSell = getIntFromUser("How many tickets do we need to sell? ",
                                             1, Integer.MAX_VALUE, true, true);
-    int numOfBuyers = sellTickets(numOfTicketsToSell);
+    boolean shouldLog = false;
+    boolean didGetUserInput = false;
+    do {
+      System.out.print("Should we log to a file? (enter yes or no) ");
+      String userResponse = keyboardReader.next();
+      if (userResponse.equalsIgnoreCase("yes")) {
+        shouldLog = true;
+        didGetUserInput = true;
+      }
+      else if (userResponse.equalsIgnoreCase("yes")) {
+        shouldLog = false;
+        didGetUserInput = true;
+      }
+    } while (!didGetUserInput);
+    int numOfBuyers = sellTickets(numOfTicketsToSell, shouldLog);
     System.out.printf("Total Number of Buyers: %d%n", numOfBuyers);
   }
+  
   /** 
    * Simulates a the selling of cinema tickets at ticket booth. 
    * Method will not quit until all tickets have been sold. 
@@ -914,7 +923,17 @@ public class GroupProject {
    * @param numberOfTickets The number of tickets to buy
    * @return The number of buyers
    */
-  public static int sellTickets(int numberOfTickets) {
+  public static int sellTickets(int numberOfTickets, boolean logTransactionsToFile) {
+    PrintWriter fileWriter = null;
+    if (logTransactionsToFile) {
+      try {
+        File outputFile = getFileFromUser("Where is the input file? ", false, true);
+        fileWriter = new PrintWriter(outputFile);
+      }
+      catch (java.lang.Exception err) {
+        System.out.println("There was a problem writing to your file");
+      }
+    }
     int desiredQuantity = 0;
     int buyers = 0;
     while(numberOfTickets > 0) {
@@ -938,7 +957,21 @@ public class GroupProject {
       else {
         numberOfTickets = numberOfTickets - desiredQuantity;
         buyers++;
+        if (logTransactionsToFile) {
+          try {
+            fileWriter.printf("Buyer #%d bought %d ticket", buyers, desiredQuantity);
+            if (desiredQuantity != 1) {
+              fileWriter.println("s");
+            }
+          }
+          catch (java.lang.Exception err) {
+            System.out.println("There was a problem writing to your file");
+          }
+        }
       }
+    }
+    if (logTransactionsToFile) {
+      fileWriter.close();
     }
     return buyers;
   }
