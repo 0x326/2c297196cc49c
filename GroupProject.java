@@ -540,6 +540,21 @@ public class GroupProject {
     return result;
   }
   
+  //// Problem 20 ////
+  
+  public static void solveProblem20() {
+    BigInteger number = new BigInteger("1");
+    System.out.println("Finds the sum of the digits of a factorial");
+    BigInteger userNum = getBigIntegerFromUser("Enter a number for the factorial: ",number , true);
+    BigInteger sum = new BigInteger("1");
+    BigInteger i = new BigInteger("0");
+    i = userNum;
+    for (; i.compareTo(BigInteger.ZERO) >= 1; i = i.subtract(BigInteger.ONE)) {
+      sum = sum.multiply(i);
+    }
+    System.out.println(sumOfDigits(sum));
+  }
+  
   //// PROBLEM 47 ////
   
   /**
