@@ -1,6 +1,6 @@
 // Name: John Meyer, Bri Clements, Noah Sheridan, Tianyu "Jason" Zhang, Ranyang "Shayne" Hu
 // Unique IDs (respectively): meyerjm, clemenbr, sheridnc, zhangt9, hur4
-// Percent Contribution (respectively): 
+// Percent Contribution (respectively): 32%, 32%, 30%, 3% 3%
 // Instructor: Vijayalakshmi Ramasamy
 // CSE 174, Section A
 // Date: December 9, 2016
@@ -10,8 +10,6 @@
 import java.util.Scanner;
 import java.math.BigInteger;
 import java.io.*;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 /**
  * This is the class we will use for our presentation of the project
@@ -23,7 +21,6 @@ public class GroupProject {
    * Presents a main menu where the user can choose the solutions of this project
    */
   public static void main(String[] args) {
-    //Logger.getGlobal().setLevel(Level.OFF);
     // Display banner
     System.out.println("//===================\\\\");
     System.out.println("||                   ||");
@@ -40,7 +37,9 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, Problem47, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, "
+                         + "Problem47, Question6 (from More Looping), "
+                         + "Question11 (from More Looping), or Question23 (from More Looping)");
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -73,7 +72,6 @@ public class GroupProject {
       }
       else {
         System.out.println("Input not recognized");
-        Logger.getGlobal().info("Input Received: " + problemChoice);
       }
     } while (!shouldQuit);
   }
@@ -167,16 +165,15 @@ public class GroupProject {
    * Gives the user a prompt and get a valid filename from the user
    * @param prompt The prompt printed with {@code System.out.printf}
    * @param shouldExist True if the user must enter a file which already exists
-   * @return The file/filename specified by the user //TODO: Update this documentation
+   * @return The File object which the user specified
    */
-  public static File getFileFromUser(String prompt, boolean shouldExist, boolean shouldHaveWriteAccess) {
+  public static File getFileFromUser(String prompt, boolean shouldExist, 
+                                     boolean shouldHaveWriteAccess) {
     File chosenFile = null;
     boolean isDesiredFile = false;
     String filename;
     while (!isDesiredFile) {
       System.out.printf(prompt);
-      /*filename = keyboardReader.nextLine(); //TODO: Remove this comment block
-      keyboardReader.next();*/
       filename = keyboardReader.next();
       if (filename.equals(":q")) {
         chosenFile = null;
@@ -184,7 +181,8 @@ public class GroupProject {
       }
       chosenFile = new File(filename);
       if (shouldExist && chosenFile.isFile()) {
-        if (chosenFile.canRead() && (shouldHaveWriteAccess && chosenFile.canWrite() || !shouldHaveWriteAccess)) {
+        if (chosenFile.canRead() && (shouldHaveWriteAccess && chosenFile.canWrite()
+                                     || !shouldHaveWriteAccess)) {
           isDesiredFile = true;
         }
       }
@@ -367,7 +365,8 @@ public class GroupProject {
       byte nextNumber = numOfDigits - currentDigit > 0
         ? (byte) ((numToCompute / pow(10, numOfDigits - currentDigit - 1)) % 10)
         : -1;
-      if (isBritishLocale && numOfDigits >= 3 && (numOfDigits - currentDigit) == 1 && (currentNumber != 0 || nextNumber != 0)) {
+      if (isBritishLocale && numOfDigits >= 3 && (numOfDigits - currentDigit) == 1
+          && (currentNumber != 0 || nextNumber != 0)) {
         numberNamePrefix = "and";
       }
       switch ((numOfDigits - currentDigit) % 3) {
@@ -597,7 +596,8 @@ public class GroupProject {
       // Cycle through factors
       System.out.print(factorsOfConsecutiveNumbers[numberIndex][0][0]);
       System.out.print("^" + factorsOfConsecutiveNumbers[numberIndex][1][0]);
-      for (int factorIndex = 1; factorIndex < factorsOfConsecutiveNumbers[numberIndex][0].length; factorIndex++) {
+      for (int factorIndex = 1; factorIndex < factorsOfConsecutiveNumbers[numberIndex][0].length;
+           factorIndex++) {
         System.out.print(" X " + factorsOfConsecutiveNumbers[numberIndex][0][factorIndex]);
         System.out.print("^" + factorsOfConsecutiveNumbers[numberIndex][1][factorIndex]);
       }
@@ -677,174 +677,6 @@ public class GroupProject {
     distinctFactors = java.util.Arrays.copyOf(distinctFactors, numOfDistinctFactors);
     timesOfOccurance = java.util.Arrays.copyOf(timesOfOccurance, numOfDistinctFactors);
     return new int[][] {distinctFactors, timesOfOccurance};
-  }
-  
-  //// PROBLEM 551 ////
-  
-  /**
-   * Solves problem at https://projecteuler.net/problem=551.
-   * See Problem 16
-   */
-  public static void solveProblem551() {
-    System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
-    BigInteger lowestAcceptableValue = new BigInteger("1");
-    BigInteger startingTerm = 
-      getBigIntegerFromUser("Give a starting term: ", lowestAcceptableValue, true);
-    long startingPosition = 
-      getLongFromUser("What is the position of this term? ", 2, Long.MAX_VALUE, true, false);
-    long endingPosition = 
-      getLongFromUser("What term would you like to compute? ", startingPosition, Long.MAX_VALUE,
-                     false, true);
-    BigInteger endingTerm = computeSeries(startingTerm, startingPosition, endingPosition);
-    System.out.printf("The %d%s term is: %s%n", endingPosition, ordinalSuffix(endingPosition), endingTerm);
-  }
-  
-  /**
-   * Solves problem at https://projecteuler.net/problem=551.
-   * This time reading input from a file instead of from the user
-   * and saving the output to another file
-   * @see solveProblem551
-   */
-  public static void solveProblem551WithFiles() {
-    // Display greeting
-    System.out.println("Computes the series where each term is the sum of the previous term and of the sum of its digits");
-    System.out.println("The rest of this solution has yet to be implemented");
-    // Ask for filenames
-    File inputFile = getFileFromUser("Where is the file of series you would like to compute? ", true, false);
-    if (inputFile == null) {
-      return; //TODO: Check to see if this is good styling/structuring
-    }
-    File outputFile = getFileFromUser("Where would you like to save the result? ", false, true);
-    // Read data from input file
-    int numOfSetsFound = 0;
-    BigInteger[] startingTerms = null;
-    long[] startingPositions = null;
-    long[] endingPositions = null;
-    Scanner fileReader = null;
-    boolean needsToReadFile = true;
-    while (needsToReadFile) {
-      numOfSetsFound = 0;
-      startingTerms = new BigInteger[10];
-      startingPositions = new long[startingTerms.length];
-      endingPositions = new long[startingTerms.length];
-      try {
-        fileReader = new Scanner(inputFile);
-        for (int iteration = 0; fileReader.hasNextBigInteger() || fileReader.hasNextLong(); ++iteration, iteration %= 3) { //TODO: Fix infinite loop
-          if (iteration == 0) {
-            BigInteger startingTerm = fileReader.nextBigInteger();
-            if (numOfSetsFound == startingTerms.length) {
-              startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound + 10);
-              startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound + 10);
-              endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound + 10);
-            }
-            startingTerms[numOfSetsFound] = startingTerm;
-          }
-          else if (iteration == 1) {
-            startingPositions[numOfSetsFound] = fileReader.nextLong();
-          }
-          else {
-            endingPositions[numOfSetsFound++] = fileReader.nextLong();
-          }
-        }
-      }
-      catch (java.lang.Exception err) {
-        // Get new input file from user
-        System.out.println("There seems to be a problem reading from the file you specified earlier");
-        inputFile = 
-          getFileFromUser("Where is the file of series you would like to compute? ", true, false);
-        if (inputFile == null) {
-          System.out.println("Read operation abandoned");
-          needsToReadFile = false;
-          return;
-        }
-      }
-    }
-    // Resize terms
-    startingTerms = java.util.Arrays.copyOf(startingTerms, numOfSetsFound);
-    startingPositions = java.util.Arrays.copyOf(startingPositions, numOfSetsFound);
-    endingPositions = java.util.Arrays.copyOf(endingPositions, numOfSetsFound);
-    fileReader.close();
-    // Do computations
-    BigInteger[] endingTerms = new BigInteger[startingTerms.length];
-    for (int arrayIndex = 0; arrayIndex < endingTerms.length; arrayIndex++) {
-      endingTerms[arrayIndex] = 
-        computeSeries(startingTerms[arrayIndex], startingPositions[arrayIndex],
-                      endingPositions[arrayIndex]);
-    }
-    // Write results to output file
-    PrintWriter fileWriter = null;
-    boolean needsToWriteFile = true;
-    while (needsToWriteFile) {
-      try {
-        if (fileWriter != null) {
-          fileWriter.close();
-        }
-        fileWriter = new PrintWriter(outputFile);
-        for (int arrayIndex = 0; arrayIndex < endingTerms.length; arrayIndex++) {
-          fileWriter.printf("The %d%s term is: %s%n", endingPositions[arrayIndex],
-                            ordinalSuffix(endingPositions[arrayIndex]), endingTerms[arrayIndex]);
-        }
-        System.out.println("File saved successfully");
-        needsToWriteFile = false;
-      }
-      catch (java.lang.Exception err) {
-        // Get new output file from user
-        System.out.println("There seems to be a problem writing to the file you specified earlier "
-                          + "but we still have your data");
-        outputFile = getFileFromUser("Where would you like to save the result? ", false, true);
-        if (outputFile == null) {
-          System.out.println("Write operation abandoned");
-          needsToWriteFile = false;
-        }
-      }
-    }
-  }
-  
-  /**
-   * Computes the partial series where each term is the sum of the previous term
-   * and of the sum of the previous term's digits
-   * @param initialTerm The starting term
-   * @param startingIndex The starting term index (does not have to be 1)
-   * @param endingIndex The ending term index
-   * @return The last term of the partial series
-   */
-  public static BigInteger computeSeries(BigInteger initialTerm, long startingIndex, long endingIndex) {
-    byte percentDone = 0;
-    long lastHeartbeatIteration = startingIndex;
-    byte lastHeartbeatPercent = percentDone;
-    BigInteger seriesTerm = initialTerm;
-    for (long i = startingIndex; i < endingIndex; i++) {
-      Integer digitSum = new Integer(sumOfDigits(seriesTerm));
-      BigInteger digitSumAsBigInteger = new BigInteger(digitSum.toString());
-      seriesTerm = seriesTerm.add(digitSumAsBigInteger);
-      percentDone = (byte) ((i - startingIndex) * 100 / (endingIndex - startingIndex));
-      if (percentDone - lastHeartbeatPercent > 5 || i - lastHeartbeatIteration > 100000) {
-        // Send new heartbeat
-        System.out.printf(" %d%% done: %d%s term is %s%n", percentDone, i, ordinalSuffix(i), seriesTerm);
-        lastHeartbeatPercent = percentDone;
-        lastHeartbeatIteration = i;
-      }
-    }
-    return seriesTerm;
-  }
-  
-  /**
-   * Returns the suffix of a given ordinal number (Ex: 1 -> "st", 2 -> "nd", etc.)
-   * @return The suffix
-   */
-  public static String ordinalSuffix(long number) {
-    String suffix;
-    number %= 100;
-    if(number % 10 == 1 && number != 11) {
-      suffix = "st";
-    } else if (number % 10 == 2 && number != 12) {
-      suffix = "nd";
-    } else if (number % 10 == 3 && number != 13) {
-      suffix = "rd";
-    } else {
-      suffix = "th";
-    }
-    return suffix;
   }
   
   //// QUESTION 6 FROM MORE LOOPING PROBLEM SHEET ////
