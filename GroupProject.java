@@ -904,7 +904,7 @@ public class GroupProject {
         shouldLog = true;
         didGetUserInput = true;
       }
-      else if (userResponse.equalsIgnoreCase("yes")) {
+      else if (userResponse.equalsIgnoreCase("no")) {
         shouldLog = false;
         didGetUserInput = true;
       }
@@ -922,9 +922,10 @@ public class GroupProject {
    */
   public static int sellTickets(int numberOfTickets, boolean logTransactionsToFile) {
     PrintWriter fileWriter = null;
+    File outputFile = null;
     if (logTransactionsToFile) {
       try {
-        File outputFile = getFileFromUser("Where is the input file? ", false, true);
+        outputFile = getFileFromUser("Where is the input file? ", false, true);
         fileWriter = new PrintWriter(outputFile);
       }
       catch (java.lang.Exception err) {
@@ -958,8 +959,9 @@ public class GroupProject {
           try {
             fileWriter.printf("Buyer #%d bought %d ticket", buyers, desiredQuantity);
             if (desiredQuantity != 1) {
-              fileWriter.println("s");
+              fileWriter.print("s");
             }
+            fileWriter.println();
           }
           catch (java.lang.Exception err) {
             System.out.println("There was a problem writing to your file");
@@ -969,6 +971,17 @@ public class GroupProject {
     }
     if (logTransactionsToFile) {
       fileWriter.close();
+      // Reread the log file to the user
+      Scanner fileReader;
+      try {
+        fileReader = new Scanner(outputFile);
+        while(fileReader.hasNext()) {
+          System.out.println(fileReader.nextLine());
+        }
+      }
+      catch (java.lang.Exception err) {
+        System.out.println("There was a problem reading from the file");
+      }
     }
     return buyers;
   }
