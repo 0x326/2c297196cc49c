@@ -5,7 +5,7 @@
 // CSE 174, Section A
 // Date: December 9, 2016
 // Filename: GroupProject.java
-// Description: Submission of group assignment to solve Project Euler chanllenges
+// Description: Submission of group assignment to solve Project Euler challenges
 
 import java.util.Scanner;
 import java.math.BigInteger;
@@ -40,7 +40,7 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, Problem47, Problem551, Problem551WithFiles, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
+      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem47, Problem551, Problem551WithFiles, Question6 (from More Looping), Question11 (from More Looping), or Question23 (from More Looping)"); //TODO: Read this list from `ListOfProblems.csv` and separate by commas
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -58,9 +58,6 @@ public class GroupProject {
       }
       else if (problemChoice.equals("problem17")) {
         solveProblem17();
-      }
-      else if (problemChoice.equals("problem20")) {
-        solveProblem20();
       }
       else if (problemChoice.equals("problem47")) {
         solveProblem47();
@@ -541,21 +538,6 @@ public class GroupProject {
       result *= base;
     }
     return result;
-  }
-  
-  //// Problem 20 ////
-  
-  public static void solveProblem20() {
-    BigInteger number = new BigInteger("1");
-    System.out.println("Finds the sum of the digits of a factorial");
-    BigInteger userNum = getBigIntegerFromUser("Enter a number for the factorial",number , true);
-    BigInteger sum = new BigInteger("1");
-    BigInteger i = new BigInteger("0");
-    i = userNum;
-    for (; i.compareTo(BigInteger.ZERO) >= 1; i = i.subtract(BigInteger.ONE)) {
-      sum = sum.multiply(i);
-    }
-    System.out.println(sumOfDigits(sum));
   }
   
   //// PROBLEM 47 ////
