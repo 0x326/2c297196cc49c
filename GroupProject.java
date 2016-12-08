@@ -23,7 +23,7 @@ public class GroupProject {
    * Presents a main menu where the user can choose the solutions of this project
    */
   public static void main(String[] args) {
-    Logger.getGlobal().setLevel(Level.OFF);
+    //Logger.getGlobal().setLevel(Level.OFF);
     // Display banner
     System.out.println("//===================\\\\");
     System.out.println("||                   ||");
@@ -357,8 +357,6 @@ public class GroupProject {
     // Declare Variables
     byte numOfDigits;
     
-    Logger.getGlobal().info("" + numToCompute);
-    
     // Find out how many digits the number has
     for (numOfDigits = 1; numToCompute / Math.pow(10, numOfDigits - 1) >= 10; numOfDigits++);
     // Loop does nothing; it only updates `numOfDigits`
@@ -425,7 +423,7 @@ public class GroupProject {
               numberName = "thirty";
               break;
             case 4:
-              numberName = "fourty";
+              numberName = "forty";
               break;
             case 5:
               numberName = "fifty";
@@ -524,8 +522,6 @@ public class GroupProject {
     }
     numberInWords = numberInWords.trim();
     
-    Logger.getGlobal().info(numberInWords);
-    
     // Return result
     return numberInWords;
   }
@@ -565,7 +561,6 @@ public class GroupProject {
     // Begin testing the interval [1, infinity) for integers until we find enough consecutive numbers
     for (int tallyOfConsecutiveIntegers = 0, i = 1;
          tallyOfConsecutiveIntegers < desiredNumberOfConsecutiveNumbers; i++) {
-      Logger.getGlobal().info("i: " + i);
       // Factor the integer
       int[] factorList = primeFactor(i);
       // Filter distinct factors
