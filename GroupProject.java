@@ -342,7 +342,7 @@ public class GroupProject {
   public static long countLettersOfInterval(long startingNumber, long endingNumber) {
     long totalNumOfLetters = 0;
     for (long numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
-      totalNumOfLetters += toNumeral(numToTest, false).replaceAll(" ", "").length();
+      totalNumOfLetters += toNumeral(numToTest, true).replaceAll(" ", "").length();
     }
     return totalNumOfLetters;
   }
