@@ -5,7 +5,7 @@
 // CSE 174, Section A
 // Date: December 9, 2016
 // Filename: GroupProject.java
-// Description: Submission of group assignment to solve Project Euler chanllenges
+// Description: Submission of group assignment to solve Project Euler challenges
 
 import java.util.Scanner;
 import java.math.BigInteger;
@@ -58,9 +58,6 @@ public class GroupProject {
       }
       else if (problemChoice.equals("problem17")) {
         solveProblem17();
-      }
-      else if (problemChoice.equals("problem20")) {
-        solveProblem20();
       }
       else if (problemChoice.equals("problem47")) {
         solveProblem47();
@@ -542,7 +539,7 @@ public class GroupProject {
   public static void solveProblem20() {
     BigInteger number = new BigInteger("1");
     System.out.println("Finds the sum of the digits of a factorial");
-    BigInteger userNum = getBigIntegerFromUser("Enter a number for the factorial",number , true);
+    BigInteger userNum = getBigIntegerFromUser("Enter a number for the factorial: ",number , true);
     BigInteger sum = new BigInteger("1");
     BigInteger i = new BigInteger("0");
     i = userNum;
