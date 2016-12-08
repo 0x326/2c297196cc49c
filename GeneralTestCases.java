@@ -30,7 +30,7 @@ public class GeneralTestCases extends TestCase {
     String[] numerals = {
       "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
       "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", 
-      "nineteen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety",
+      "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
       "one hundred one", "one hundred two", "one hundred ten", "one hundred eleven",
       "one hundred twelve", "one hundred thirteen", "one hundred twenty", "one hundred thirty one",
       "one hundred ninety nine", "two hundred", "two hundred one", "two hundred eleven",
