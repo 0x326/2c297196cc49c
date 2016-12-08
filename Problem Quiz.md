@@ -1,7 +1,7 @@
 # [Problem Quiz](https://drive.google.com/open?id=0B9AgP9SyhVCWbk9jcklHbmt1SXM)
 Names: John Meyer, Bri Clements, Noah Sheridan, Tianyu "Jason" Zhang, Ranyang "Shayne" Hu
 Unique IDs (respectively): meyerjm, clemenbr, sheridnc, zhangt9, hur4
-Percent Contribution (respectively): 
+Percent Contribution (respectively): 32%, 32%, 30%, 3% 3%
 Instructor: Vijayalakshmi Ramasamy
 CSE 174, Section A
 Date: December 9, 2016
