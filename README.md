@@ -60,16 +60,6 @@ CSE 174 Project Euler Group
  - [x] Make code calculate based on user input
  - [ ] Test code
 
-### Problem 551
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
 ### Question 6 From "More Looping" Problem Sheet
 
  - [x] Design algorithm
@@ -111,6 +101,7 @@ CSE 174 Project Euler Group
  - [x] Test Presentation UI
  - [x] Add file handling
  - [ ] Check for `//TODO:` comments
+ - [ ] Check for column limits
 
 ## Grading Rubric from <https://drive.google.com/file/d/0B9AgP9SyhVCWOVdOVTUxbkdZdDA/>
 
