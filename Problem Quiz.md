@@ -5,15 +5,13 @@ Percent Contribution (respectively): 32%, 32%, 30%, 3% 3%
 Instructor: Vijayalakshmi Ramasamy
 CSE 174, Section A
 Date: December 9, 2016
-Filename: GroupProject.java
-Description: Submission of group assignment to solve Project Euler challenges
 
-Practice Quiz Problems
-1.  a 	
-2.  d	
+## Practice Quiz Problems
+1.  a
+2.  d
 3.  d
 4.  a
-5.  a	
+5.  a
 6.  b
 7.  b
 8.  a
@@ -21,7 +19,7 @@ Practice Quiz Problems
 10. b
 11. b
 12. a
-13. a	
+13. a
 14. a
 15. d
 16. c
@@ -38,19 +36,19 @@ Practice Quiz Problems
 27. a
 28. a
 29. b
-30. b	
+30. b
 31. c
 32. d
 33. b
 34. a
-35. d	
+35. d
 36. d
 37. b
-38. d	
+38. d
 39. 5
 40. -1
-41. FALSE 
-42. TRUE   
+41. FALSE
+42. TRUE
 43. Line 2  (when compiled)
 44. f
 45. index at 100 is out of bounds
@@ -59,43 +57,41 @@ Practice Quiz Problems
 48. b
 49. TRUE
 50. TRUE
-51. FALSE 
-52. a 
+51. FALSE
+52. a
 53. d
 54. c
 55. d
-56. a	
-57. 0 2 4 6 8 	
-58. c	
+56. a
+57. 0 2 4 6 8
+58. c
 59. b	
 60. b
-61. a 	
-62. "Hello World"	
-63. c 
-64. a	
-65. c	
-66. a 	
+61. a
+62. "Hello World"
+63. c
+64. a
+65. c
+66. a
 67. a
-68. compilation error	
+68. compilation error
 69. a
 70. c
-71. FALSE 	
+71. FALSE
 72. b
 73. c
 74. b
 75. c
 76. a
 77. c
-78. compilation error	
-79. estimate number of remaining bytes that can be read	
-80. b 	
-81. a, b, f	
-82. f2[0] = 0.0	
-83. ABDCBDCB	
+78. compilation error
+79. estimate number of remaining bytes that can be read
+80. b
+81. a, b, f
+82. f2[0] = 0.0
+83. ABDCBDCB
 84. 43
 85. d
 86. error
 87. one two three two three
-88. i = 0, j = -1 	
-
-
+88. i = 0, j = -1
