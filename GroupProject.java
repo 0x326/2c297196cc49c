@@ -12,7 +12,7 @@ import java.math.BigInteger;
 import java.io.*;
 
 /**
- * Group assignment to solve Project Euler challenges
+ * Group assignment to solve number-related Project Euler/Problem Sheet challenges
  */
 public class GroupProject {
   static Scanner keyboardReader = new Scanner(System.in);
@@ -39,6 +39,7 @@ public class GroupProject {
     do {
       System.out.println();
       System.out.println("==== MAIN MENU ====");
+      System.out.println("Solve number-related problems");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
       // Display options
@@ -849,6 +850,7 @@ public class GroupProject {
         while(fileReader.hasNext()) {
           System.out.println(fileReader.nextLine());
         }
+        fileReader.close();
       }
       catch (java.lang.Exception err) {
         System.out.println("There was a problem reading from the file");
