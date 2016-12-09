@@ -64,6 +64,9 @@ public class GroupProject {
       else if (problemChoice.equals("problem17")) {
         solveProblem17();
       }
+      else if (problemChoice.equals("problem20")) {
+        solveProblem20();
+      }
       else if (problemChoice.equals("problem47")) {
         solveProblem47();
       }
@@ -248,22 +251,25 @@ public class GroupProject {
    * @param limit The value of N for the above summation
    * @return The numerical difference
    */
-  public static long differenceOperation(int limit) {
+  public static BigInteger differenceOperation(int limit) {
+    BigInteger limitAsBigInt = new BigInteger(Integer.toString(limit));
     // Compute $\Sigma_{k=1}^{N} (k^2)$
-    long sumOfSquares = 0;
-    for (int num = 0; num <= limit; num++) {
-      sumOfSquares += Math.pow(num, 2);
+    BigInteger sumOfSquares = BigInteger.ZERO;
+    for (BigInteger num = BigInteger.ONE; num.compareTo(limitAsBigInt) <= 0;
+         num = num.add(BigInteger.ONE)) {
+      sumOfSquares = sumOfSquares.add(num.pow(2));
     }
     
     // Compute $(\Sigma_{k=1}^{N} (k))^2$
-    long sumOfIntegers = 0;
-    for (int num = 0; num <= limit; num++) {
-      sumOfIntegers += num;
+    BigInteger sumOfIntegers = BigInteger.ZERO;
+    for (BigInteger num = BigInteger.ONE; num.compareTo(limitAsBigInt) <= 0;
+         num = num.add(BigInteger.ONE)) {
+      sumOfIntegers = sumOfIntegers.add(num);
     }
-    long squareOfSums = sumOfIntegers * sumOfIntegers;
+    BigInteger squareOfSums = sumOfIntegers.pow(2);
     
     // squareOfSums will always be larger than sumOfSquares
-    return squareOfSums - sumOfSquares; 
+    return squareOfSums.subtract(sumOfSquares);
   }
   
   //// PROBLEM 16 ////
@@ -276,7 +282,7 @@ public class GroupProject {
     int base = getIntFromUser("Enter a base value: ", 1, Integer.MAX_VALUE, true, true);
     int power = getIntFromUser("To what exponent shall " + base + " be raised: ",
                                1, Integer.MAX_VALUE, true, true);
-    BigInteger num = new BigInteger("" + base);
+    BigInteger num = new BigInteger(Integer.toString(base));
     num = num.pow(power);
     System.out.printf("The sum of the digits of %d^%d are: %d%n", base, power, sumOfDigits(num));
   }
@@ -550,7 +556,7 @@ public class GroupProject {
                                  true, true);
     BigInteger factorial = computeFactorial(baseNum);
     long digitSum = sumOfDigits(factorial);
-    System.out.printf("The sum of the digits of %d! is: %d", baseNum, digitSum);
+    System.out.printf("The sum of the digits of %d! is: %d%n", baseNum, digitSum);
   }
   
   /**
@@ -560,9 +566,10 @@ public class GroupProject {
    */
   public static BigInteger computeFactorial(long base) {
     BigInteger result = new BigInteger("1");
-    BigInteger finalTerm = new BigInteger(Double.toString(base));
+    BigInteger finalTerm = new BigInteger(Long.toString(base));
     for (BigInteger mutliplicationTerm = new BigInteger("1");
-           mutliplicationTerm.compareTo(finalTerm) <= 0; mutliplicationTerm.add(BigInteger.ONE)) {
+         mutliplicationTerm.compareTo(finalTerm) <= 0;
+         mutliplicationTerm = mutliplicationTerm.add(BigInteger.ONE)) {
       result.multiply(mutliplicationTerm);
     }
     return result;
