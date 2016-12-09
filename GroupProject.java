@@ -5,14 +5,14 @@
 // CSE 174, Section A
 // Date: December 9, 2016
 // Filename: GroupProject.java
-// Description: Submission of group assignment to solve Project Euler challenges
+// Description: Group assignment to solve Project Euler challenges
 
 import java.util.Scanner;
 import java.math.BigInteger;
 import java.io.*;
 
 /**
- * This is the class we will use for our presentation of the project
+ * Group assignment to solve Project Euler challenges
  */
 public class GroupProject {
   static Scanner keyboardReader = new Scanner(System.in);
@@ -30,6 +30,10 @@ public class GroupProject {
     System.out.println("||                   ||");
     System.out.println("\\\\===================//");
     
+    String[] problemOptions = {"Problem1", "Problem6", "Problem16", "Problem17", "Problem20",
+      "Problem47", "Question6 (from More Looping)", "Question11 (from More Looping)",
+      "Question23 (from More Looping)"
+    };
     String problemChoice;
     boolean shouldQuit = false;
     do {
@@ -37,9 +41,11 @@ public class GroupProject {
       System.out.println("==== MAIN MENU ====");
       // Ask user for the problem
       System.out.println("What problem do you want solved?");
-      System.out.println("Options are: Problem1, Problem6, Problem16, Problem17, Problem20, "
-                         + "Problem47, Question6 (from More Looping), "
-                         + "Question11 (from More Looping), or Question23 (from More Looping)");
+      // Display options
+      System.out.println("Options are:");
+      for (int optionIndex = 0; optionIndex < problemOptions.length; optionIndex++) {
+        System.out.println(" " + problemOptions[optionIndex]);
+      }
       System.out.println("Enter 'exit' to quit");
       System.out.print("> ");
       problemChoice = keyboardReader.next().toLowerCase().replaceAll(" ","");
@@ -200,8 +206,7 @@ public class GroupProject {
    */
   public static void solveProblem1() {
     System.out.println("Finds the sum of all multiples of 3 and 5 less than N");
-    int numLimit = getIntFromUser("What is N? ",
-                                  1, Integer.MAX_VALUE, true, true);
+    int numLimit = getIntFromUser("What is N? ", 1, Integer.MAX_VALUE, true, true);
     System.out.printf("The sum of the multiples less than %d are: %d%n", numLimit,
                       sumOfNaturalNumbers(numLimit));
   }
@@ -212,9 +217,9 @@ public class GroupProject {
    * @param numLimit The endpoint to the interval
    * @return The sum of the numbers
    */
-  public static int sumOfNaturalNumbers(int numLimit) {
+  public static long sumOfNaturalNumbers(int numLimit) {
     // Declare Variables
-    int sumOfFactors = 0;
+    long sumOfFactors = 0;
     
     // Search through all numbers within range
     for(int currentNum = 0; currentNum < numLimit; currentNum++) {
@@ -234,8 +239,7 @@ public class GroupProject {
   public static void solveProblem6() {
     System.out.printf("Evaluates the difference between %s and %s%n",
                       "Sigma_{k=1}^{N} (k^2)", "(Sigma_{k=1}^{N} (k))^2");
-    int limit = getIntFromUser("Enter a number to find the sum of the squares: ",
-                               1, Integer.MAX_VALUE, true, true);
+    int limit = getIntFromUser("Enter a value for N: ", 1, Integer.MAX_VALUE, true, true);
     System.out.printf("The difference between the two is: %d%n", differenceOperation(limit));
   }
   
@@ -244,20 +248,21 @@ public class GroupProject {
    * @param limit The value of N for the above summation
    * @return The numerical difference
    */
-  public static int differenceOperation(int limit) {
+  public static long differenceOperation(int limit) {
     // Compute $\Sigma_{k=1}^{N} (k^2)$
-    int sumOfSquares = 0;
+    long sumOfSquares = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfSquares += Math.pow(num, 2);
     }
     
     // Compute $(\Sigma_{k=1}^{N} (k))^2$
-    int sumOfIntegers = 0;
+    long sumOfIntegers = 0;
     for (int num = 0; num <= limit; num++) {
       sumOfIntegers += num;
     }
-    int squareOfSums = (int) (Math.pow(sumOfIntegers, 2));
+    long squareOfSums = sumOfIntegers * sumOfIntegers;
     
+    // squareOfSums will always be larger than sumOfSquares
     return squareOfSums - sumOfSquares; 
   }
   
@@ -268,8 +273,7 @@ public class GroupProject {
    */
   public static void solveProblem16() {
     System.out.println("Finds the sum of the digits of a large number in the form a^b");
-    int base = getIntFromUser("Enter a base value: ",
-                              1, Integer.MAX_VALUE, true, true);
+    int base = getIntFromUser("Enter a base value: ", 1, Integer.MAX_VALUE, true, true);
     int power = getIntFromUser("To what exponent shall " + base + " be raised: ",
                                1, Integer.MAX_VALUE, true, true);
     BigInteger num = new BigInteger("" + base);
@@ -282,8 +286,8 @@ public class GroupProject {
    * @param A BigInteger representation of the number whose digits are to be counted
    * @return The sum of the digits
    */
-  public static int sumOfDigits(BigInteger num) {
-    int sum = 0;
+  public static long sumOfDigits(BigInteger num) {
+    long sum = 0;
     int numberOfDigits;
     BigInteger constant = new BigInteger("10");
     
@@ -291,7 +295,7 @@ public class GroupProject {
     for(numberOfDigits=1; num.divide(constant.pow(numberOfDigits - 1)).compareTo(constant) >= 0;
         numberOfDigits++);
     // Add digits
-    for(int i = 0; i < numberOfDigits; i++) {
+    for(long i = 0; i < numberOfDigits; i++) {
       sum = sum + (num.mod(constant)).intValue();
       num = num.divide(constant);
     }
@@ -307,18 +311,19 @@ public class GroupProject {
    * Solves problem at https://projecteuler.net/problem=17
    */
   public static void solveProblem17() {
+    boolean useBritishLocale = true;
     System.out.println("Finds the total number of letters required to write every numeral "
-                         + "within a given range in American Locale");
+                         + "within a given range in British Locale");
     // Declare variables
     long totalNumOfLetters;
-    long lowRange;
-    long highRange;
+    int lowRange;
+    int highRange;
     
     // Get range from user
-    lowRange = getLongFromUser("Enter the low range: ", 1, Long.MAX_VALUE, true, false);
-    highRange = getLongFromUser("Enter the high range: ", lowRange, Long.MAX_VALUE, false, true);
+    lowRange = getIntFromUser("Enter the low range: ", 1, Integer.MAX_VALUE, true, false);
+    highRange = getIntFromUser("Enter the high range: ", lowRange, Integer.MAX_VALUE, false, true);
     
-    totalNumOfLetters = countLettersOfInterval(lowRange, highRange);
+    totalNumOfLetters = countLettersOfInterval(lowRange, highRange, useBritishLocale);
     
     System.out.printf("Letters it takes to print all the numbers from %d to %d: %d%n", 
                       lowRange, highRange, totalNumOfLetters);
@@ -331,10 +336,11 @@ public class GroupProject {
    * @param endingNumber The inclusive interval endpoint
    * @return The number of letters written across all numbers
    */
-  public static long countLettersOfInterval(long startingNumber, long endingNumber) {
+  public static long countLettersOfInterval(int startingNumber, int endingNumber,
+                                            boolean isBritishLocale) {
     long totalNumOfLetters = 0;
     for (long numToTest = startingNumber; numToTest <= endingNumber; numToTest++) {
-      totalNumOfLetters += toNumeral(numToTest, true).replaceAll(" ", "").length();
+      totalNumOfLetters += toNumeral(numToTest, isBritishLocale).replaceAll(" ", "").length();
     }
     return totalNumOfLetters;
   }
@@ -533,19 +539,33 @@ public class GroupProject {
     return result;
   }
   
-  //// Problem 20 ////
+  //// PROBLEM 20 ////
   
+  /**
+   * Solves problem at https://projecteuler.net/problem=20
+   */
   public static void solveProblem20() {
-    BigInteger number = new BigInteger("1");
     System.out.println("Finds the sum of the digits of a factorial");
-    BigInteger userNum = getBigIntegerFromUser("Enter a number for the factorial: ",number , true);
-    BigInteger sum = new BigInteger("1");
-    BigInteger i = new BigInteger("0");
-    i = userNum;
-    for (; i.compareTo(BigInteger.ZERO) >= 1; i = i.subtract(BigInteger.ONE)) {
-      sum = sum.multiply(i);
+    int baseNum = getIntFromUser("Enter a base number for the factorial: ", 0, Integer.MAX_VALUE,
+                                 true, true);
+    BigInteger factorial = computeFactorial(baseNum);
+    long digitSum = sumOfDigits(factorial);
+    System.out.printf("The sum of the digits of %d! is: %d", baseNum, digitSum);
+  }
+  
+  /**
+   * Computes the factorial of a given number (n!)
+   * @param base The value of n to make a factorial of
+   * @returns The expanded value of n!
+   */
+  public static BigInteger computeFactorial(long base) {
+    BigInteger result = new BigInteger("1");
+    BigInteger finalTerm = new BigInteger(Double.toString(base));
+    for (BigInteger mutliplicationTerm = new BigInteger("1");
+           mutliplicationTerm.compareTo(finalTerm) <= 0; mutliplicationTerm.add(BigInteger.ONE)) {
+      result.multiply(mutliplicationTerm);
     }
-    System.out.println(sumOfDigits(sum));
+    return result;
   }
   
   //// PROBLEM 47 ////
@@ -693,10 +713,15 @@ public class GroupProject {
                                       1, Integer.MAX_VALUE, true, true);
     
     // Check each number less than the limit
+    int numOfPrimesPrinted = 0;
     for(int i = 2 ; i < numberChoice; i++) {
       if(isPrime(i)) {
         // Output the number
-        System.out.print(i + " ");
+        System.out.printf("%10d ", i);
+        numOfPrimesPrinted++;
+        if (numOfPrimesPrinted % 10 == 0) {
+          System.out.println();
+        }
       }
     }
     System.out.println();
@@ -770,15 +795,22 @@ public class GroupProject {
       System.out.println("Remaining Tickets: " + numberOfTickets);
       // Get number of tickets wanted by customer
       System.out.print("How many tickets would you like to purchase? ");
+      if (!keyboardReader.hasNextInt()) {
+        System.out.println("You must enter an integer");
+        System.out.println();
+        keyboardReader.next();
+        continue;
+      }
       desiredQuantity = keyboardReader.nextInt();
       
+      System.out.println();
       // Check to see if there are enough tickets for this purchase
       if(desiredQuantity > numberOfTickets) {
-        System.out.println("There are only " + numberOfTickets + " tickets remaining. ");
+        System.out.println("There are only " + numberOfTickets + " tickets remaining");
       }
       // Check to see if purchase exceeds customers quota
       else if(desiredQuantity > 4) {
-        System.out.println("You can only buy up to 4 tickets. ");
+        System.out.println("You can only buy up to 4 tickets");
       }
       else if (desiredQuantity < 1) {
         System.out.println("You must buy at least one ticket");
@@ -826,22 +858,19 @@ public class GroupProject {
    */
   public static void solveQuestion23() {
     System.out.println("Prints a triangle of incremental terms and totals the terms of each row");
-    int userInput = getIntFromUser("How rows would you like to print? ",
+    int numOfRows = getIntFromUser("How rows would you like to print? ",
                                    1, Integer.MAX_VALUE, true, true);
     
-    int[][] nums = new int[userInput][];
-    for (int rowIndex = 0; rowIndex < nums.length; rowIndex++) {
-      nums[rowIndex] = new int[rowIndex + 1];
-      for (int columnIndex = 0; columnIndex < nums[rowIndex].length; columnIndex++) {
-        nums[rowIndex][columnIndex] = columnIndex + 1;
-      }
-    }
-    for(int[] row : nums) {
+    // Print table of numbers
+    for(int rowIndex = 0; rowIndex < numOfRows; rowIndex++) {
       int sum = 0;
-      for(int columnIndex = 0; columnIndex < row.length; columnIndex++) {
-        sum += row[columnIndex];
-        System.out.print(row[columnIndex]);
-        if (columnIndex != row.length - 1) {
+      for(int columnIndex = 0; columnIndex <= rowIndex; columnIndex++) {
+        sum += columnIndex + 1;
+        System.out.print(columnIndex + 1);
+        if (columnIndex != 0 && columnIndex % 20 == 0) {
+          System.out.println();
+        }
+        if (columnIndex != rowIndex) {
           System.out.print(" + ");
         }
       }
