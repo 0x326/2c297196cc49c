@@ -9,119 +9,25 @@ CSE 174 Project Euler Group
  - Tianyu Zhang
  - Ranyang Hu
 
-## Todo List
-### Problem 1
+## Project Description
 
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
+This project solves the following challenges from ProjectEuler.net
 
-### Problem 6
+ - [Problem 1](https://projecteuler.net/problem=1)
+ - [Problem 6](https://projecteuler.net/problem=6)
+ - [Problem 16](https://projecteuler.net/problem=16)
+ - [Problem 17](https://projecteuler.net/problem=17)
+ - [Problem 47](https://projecteuler.net/problem=47)
+ - Question 6 from "More Looping" Problem Sheet
+ - Question 11 from "More Looping" Problem Sheet
+ - Question 23 from "More Looping" Problem Sheet
 
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 16
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 17
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Problem 47
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Question 6 From "More Looping" Problem Sheet
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Question 11 From "More Looping" Problem Sheet
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [x] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Question 23 From "More Looping" Problem Sheet
-
- - [x] Design algorithm
- - [x] Create code to solve the problem
- - [ ] Comment code so it is readable by others
- - [x] Create javadoc documentation
- - [ ] Write reasoning for our choice of algorithm
- - [x] Make code calculate based on user input
- - [ ] Test code
-
-### Presentation UI (`Main.java`)
-
- - [x] Write code to call methods of the above problems to show off what we have done
- - [x] Loop
-
-### Final Testing
-
- - [ ] Create test cases for the above problems
- - [x] Test Presentation UI
- - [x] Add file handling
- - [x] Check for `//TODO:` comments
- - [x] Check for column limits
+To start the project, run `java Main`.
 
 ## Grading Rubric from <https://drive.google.com/file/d/0B9AgP9SyhVCWOVdOVTUxbkdZdDA/>
 
  - [x] 40 points for completeness – The program meets with all the things it is required to do.
- - [ ] 10 points for usability – The program uses features to make the program as easy to use as possible. This includes special instructions to the users, documentation, input validation, etc.
+ - [x] 10 points for usability – The program uses features to make the program as easy to use as possible. This includes special instructions to the users, documentation, input validation, etc.
  - [x] 10 points for source code – The program follows format and comment guidelines in source code in a way that is consistent with what we have learned in CSE 174.
  - [x] 10 points for file handling – At least one of the programs use the file handling concept.
  - [x] 10 points –  If your program does "what it should", and meets the expectations, your score for this part will be 10 points.  If your program goes above and beyond expectations (you learned some new features, or your program stands out in some positive ways), you could earn extra points here.  
-
-## Code bundling
-(If we ever wanted to make a JAR file)
-
-Compile all `.java` files:
-
-    javac *.java
-
-Bundle `.class` files into JAR file:
-
-    jar cfm bundle.jar Manifest.txt *.class
-
-Execute bundle:
-
-    java -jar bundle.jar
