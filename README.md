@@ -1,5 +1,4 @@
-CSE 174 Project Euler Group
-===========================
+# CSE 174: Project Euler Group Project
 
 ## Group Members
 
@@ -11,7 +10,7 @@ CSE 174 Project Euler Group
 
 ## Project Description
 
-This project solves the following challenges from ProjectEuler.net
+This project solves the following challenges from ProjectEuler.net and from an instructor-given problem sheet:
 
  - [Problem 1](https://projecteuler.net/problem=1)
  - [Problem 6](https://projecteuler.net/problem=6)
@@ -24,7 +23,7 @@ This project solves the following challenges from ProjectEuler.net
 
 To start the project, run `java Main`.
 
-## Grading Rubric from <https://drive.google.com/file/d/0B9AgP9SyhVCWOVdOVTUxbkdZdDA/>
+## [Grading Rubric](https://drive.google.com/file/d/0B9AgP9SyhVCWOVdOVTUxbkdZdDA/)
 
  - [x] 40 points for completeness – The program meets with all the things it is required to do.
  - [x] 10 points for usability – The program uses features to make the program as easy to use as possible. This includes special instructions to the users, documentation, input validation, etc.
